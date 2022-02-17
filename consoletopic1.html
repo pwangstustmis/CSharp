@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C#</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Side-Nav -->
+    <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+      <ul class="nav flex-column text-white w-100">
+        <li class="nav-item" style="background-color: #fff;padding-left:10px;padding-top:10px;border-bottom: rgb(255, 115, 0) 2px solid;font-size: 16pt;">
+          <p style="color:rgb(248, 138, 11);font-weight: 700;">C#<br/>程式設計(二)</p>
+        </li>
+        <li class="mx-2">
+          <span class="menuitem"><a href="index.html" class="nav-link">簡介與軟體安裝</a></span>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic1" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic1">
+            <span class="mx-2">主控台應用程式</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic1">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic1.html">語法、變數與運算子</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic2.html">輸入輸出與資料類型操作</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic3.html">條件、迴圈與函數</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
+            </ul>
+          </div>
+        </li>     
+      </ul>
+    </div>
+
+
+    <!-- Main Wrapper -->
+    <div class="p-2 my-container active-cont">
+      <!-- Breadcrumb -->
+      <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
+        <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">語法、變數與運算子</li>
+        </ol>
+      </div>
+      <!--End Top Nav -->
+
+      <!-- main page -->
+      <div style="margin-top:50px;">
+        <h3 class="text-danger p-3">內容涵蓋</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          <ul>
+            <li>語法、變數</li>
+            <li>運算子</li>
+          </ul>
+        </p>
+        <div class="p-3">
+            <h3 class="text-danger">語法、變數</h3>
+            <p>
+            不同於Python，C#程式每行命令必須以 <span class="text-danger">;</span> 結尾，同時程式區塊必須包含於兩個 <span class="text-danger">{ }</span> 之間。C#變數名稱同Python，變數名稱可由英文字或底線符號(_)開始，同時變數名稱大小寫英文字為不同的變數。程式註解單行使用 <span class="text-danger">//</span>，多行使用 <span class="text-danger">/* */</span> 將註解範圍框起來。因為C#為強型態程式語言，變數設定為 <span class="text-danger">資料類型 變數名稱;</span> 或 <span class="text-danger">資料類型 變數名稱1,變數名稱2;</span> 或 <span class="text-danger">資料類型 變數名稱=設定值;</span>
+            </p>
+            <pre><code>
+//單行註解
+/* 多
+行
+註
+解
+*/
+            </code></pre>
+        </div>
+        <div class="p-3">
+            <h3 class="text-danger">運算子</h3>
+            <p>
+            運算子(operator)用於變數與值的運算，常用運算子包含計算、設定、比較、邏輯、隸屬等，接下來每個類別進行介紹。
+            </p>
+            <ul>
+                <li>
+                    計算運算子 <span class="text-danger">+、-、*、/、%、++、--</span> ，除了加、減、乘、除之外， % 代表求餘數， ++ 代表增加1簡寫，-- 代表減少1簡寫。
+                </li>
+                <li>
+                    設定運算子 <span class="text-danger">=、+=、-=、*=、/=、%=</span> ，用於變數設定表示，以 x+=5為例，他代表 x=x+5。
+                </li>
+                <li>
+                    比較運算子 <span class="text-danger">==、!=、&gt;、&gt;=、&lt;、&lt;=</span> ，用於條件比較分別為 等於、不等於、大於、大於等於、小於、小於等於。
+                </li>
+                <li>
+                    邏輯運算子 <span class="text-danger">&&、||、!</span> ，用於串接多個條件比較分別為 且、或、否定。
+                </li>
+            </ul>
+        </div>
+ 
+        
+        
+        
+      </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>  
+    
+    <!-- custom js -->
+    <script>
+      var menu_btn = document.querySelector("#menu-btn");
+      var sidebar = document.querySelector("#sidebar");
+      var container = document.querySelector(".my-container");
+      menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+      });
+    </script>
+  </body>
+</html>

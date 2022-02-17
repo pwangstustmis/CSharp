@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C#</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Side-Nav -->
+    <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+      <ul class="nav flex-column text-white w-100">
+        <li class="nav-item" style="background-color: #fff;padding-left:10px;padding-top:10px;border-bottom: rgb(255, 115, 0) 2px solid;font-size: 16pt;">
+          <p style="color:rgb(248, 138, 11);font-weight: 700;">C#<br/>程式設計(二)</p>
+        </li>
+        <li class="mx-2">
+          <span class="menuitem"><a href="index.html" class="nav-link">簡介與軟體安裝</a></span>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic1" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic1">
+            <span class="mx-2">主控台應用程式</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic1">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic1.html">語法、變數與運算子</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic2.html">輸入輸出與資料類型操作</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic3.html">條件、迴圈與函數</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
+            </ul>
+          </div>
+        </li>     
+      </ul>
+    </div>
+
+
+    <!-- Main Wrapper -->
+    <div class="p-2 my-container active-cont">
+      <!-- Breadcrumb -->
+      <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
+        <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">條件、迴圈與函數</li>
+        </ol>
+      </div>
+      <!--End Top Nav -->
+
+      <!-- main page -->
+      <div style="margin-top:50px;">
+        <h3 class="text-danger p-3">內容涵蓋</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          <ul>
+            <li>條件</li>
+            <li>迴圈</li>
+            <li>函數</li>
+          </ul>
+        </p>
+        <div class="p-3">
+            <h3 class="text-danger">條件</h3>
+            <p>
+                C# if條件命令包含 <span class="text-danger">if、if else、if else if else</span>，三長分別為一個條件動作、兩個條件動作與多個條件動作。
+            </p>
+            <pre><code>
+//if
+if (1&lt;2) {
+    Console.WriteLine("1小於2");
+}
+//if else
+if (1&lt;2) {
+    Console.WriteLine("1小於2");
+} else {
+    Console.WriteLine("1不小於2");
+}
+//if else if else
+if (1&gt;2) {
+    Console.WriteLine("1大於2");
+} else if (1==2) {
+    Console.WriteLine("1等於2");
+} else {
+    Console.WriteLine("1小於2");
+}
+            </code></pre>
+            <p>
+                C# swicth執行多條件命令。
+            </p>
+            <pre><code>
+//swicth 每個值至於 case之後，default為所有條件不滿足，每個動作需加break
+int x=1;
+switch (x) {
+    case 3:
+        Console.WriteLine("x為3");
+        break;
+    case 2:
+        Console.WriteLine("x為2");
+        break;
+    default:
+        Console.WriteLine("x不為2或3");
+        break;
+}
+            </code></pre>
+        </div>
+        <div class="p-3">
+            <h3 class="text-danger">迴圈</h3>
+            <p>
+                C# 迴圈命令包含 <span class="text-danger">while、do while、for、foreach</span>，while、do while差別 <span class="text-danger">結束條件在一開始或結束條件在最後</span>，for迴圈使用方式 <span class="text-danger">for (資料類型 變數=起始值;變數結束條件設定;變數增加值設定)</span>，foreach用於陣列或清單，<span class="text-danger">foreach (資料類型 元素變數 in 陣列或清單變數)</span>。
+            </p>
+            <pre><code>
+//while印出1到10數字
+int i=1;
+while (i&lt;=10) {
+  Console.Write("{0,2:d}",i);
+  i=i+1;
+}
+//do while印出1到10數字
+i=1;
+do {
+  Console.Write("{0,2:d}",i);
+  i=i+1;
+} while (i&lt;=10);
+//for印出1到10數字
+for (i=1;i&lt;=10;i++) {
+  Console.Write("{0,2:d}",i);
+}
+//foreach印出陣列包含1到10元素
+int[] j=new int[]{1,2,3,4,5,6,7,8,9,10};
+foreach (int k in j) {
+  Console.Write("{0,2:d}",k);
+}
+            </code></pre>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">函數</h3>
+          <p>
+              C# 函數定義為 <span class="text-danger">函數傳回資料類型 函數名稱(資料類型 代入變數)</span>，函數可以有許多代入值，如果有傳回值則使用 <span class="text-danger">return 傳回值</span>，如果沒有傳回值，函數傳回資料類型請設為，<span class="text-danger">void</span>。
+          </p>
+          <pre><code>
+//函數func1沒有代入值、沒有傳回值並印出Hello
+void func1() {
+  Console.WriteLine("Hello");
+}
+//函數func2代入兩個整數值並傳回兩個數字和
+int func2(int i,int j) {
+  return i+j;
+}
+//呼叫函數func1
+func1();
+//呼叫函數func2並印出兩數和
+Console.WriteLine(func2(10,20));
+          </code></pre>
+      </div>       
+        
+      </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>  
+    
+    <!-- custom js -->
+    <script>
+      var menu_btn = document.querySelector("#menu-btn");
+      var sidebar = document.querySelector("#sidebar");
+      var container = document.querySelector(".my-container");
+      menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+      });
+    </script>
+  </body>
+</html>

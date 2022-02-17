@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C#</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Side-Nav -->
+    <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+      <ul class="nav flex-column text-white w-100">
+        <li class="nav-item" style="background-color: #fff;padding-left:10px;padding-top:10px;border-bottom: rgb(255, 115, 0) 2px solid;font-size: 16pt;">
+          <p style="color:rgb(248, 138, 11);font-weight: 700;">C#<br/>程式設計(二)</p>
+        </li>
+        <li class="mx-2">
+          <span class="menuitem"><a href="index.html" class="nav-link">簡介與軟體安裝</a></span>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic1" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic1">
+            <span class="mx-2">主控台應用程式</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic1">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic1.html">語法、變數與運算子</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic2.html">輸入輸出與資料類型操作</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic3.html">條件、迴圈與函數</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
+            </ul>
+          </div>
+        </li>     
+      </ul>
+    </div>
+
+
+    <!-- Main Wrapper -->
+    <div class="p-2 my-container active-cont">
+      <!-- Breadcrumb -->
+      <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
+        <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">簡介與軟體安裝</li>
+        </ol>
+      </div>
+      <!--End Top Nav -->
+
+      <!-- main page -->
+      <div style="margin-top:50px;">
+        <h3 class="text-danger p-3">內容涵蓋</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          <ul>
+            <li>簡介</li>
+            <li>軟體安裝</li>
+          </ul>
+        </p>
+        <h3 class="text-danger p-3">簡介</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          .NET是微軟開發的開放原始碼開發平臺，C#(發音C-Sharp)是.NET平台開發語言之一，不同於Python，C#是一物件導向且型別安全的程式設計語言。本課程簡要說明物件導向概念、C#語法及與Python的比較，同時課程將結合.NET MVC Web專案，讓同學能了解基本物件導向語言與基本前後端網頁設計。
+        </p>
+        <h3 class="text-danger p-3">軟體安裝</h3>       
+        <h5 class="text-success p-3" style="margin-top:-20px;">.NET 安裝</h5>
+        <p class="px-3" style="margin-top:-20px;">
+          請至.Net官網(<a href="https://dotnet.microsoft.com/en-us/download" target="_blank">https://dotnet.microsoft.com/en-us/download</a>)下載並安裝.NET SDK x64版本。
+        </p>
+        <h5 class="text-success p-3" style="margin-top:-20px;">.Visual Studio Community 2022 安裝</h5>
+        <p class="px-3" style="margin-top:-20px;">
+          請至Visual Studio官網(<a href="https://visualstudio.microsoft.com/zh-hant/vs/whatsnew/" target="_blank">https://visualstudio.microsoft.com/zh-hant/vs/whatsnew/</a>)，移至 下載Visual Studio並選擇 Community 2022，下載完畢後執行並安裝。請注意：在一開始設定項目請點選繼續(如下圖一)，安裝完設定項目後，在工作負載 Web與雲端請勾選(ASP.NET與網頁程式開發與Python開發，勾選Python時，請在右邊安裝詳細資料中選擇安裝Python 3 64-bit)，傳統型與行動裝置請勾選(.NET桌面開發與通用Windows平台開發)、其他工具組請勾選(資料儲存和處理)，如下圖二、三、四。勾選完畢請選擇安裝。整個安裝需30分鐘或以上，取決於網路與電腦。
+        </p>
+        <p><img src="imgs/introduction/vsinstall-1.png"/><hr style="color:#d00;height:2px"/></p>
+        <p><img src="imgs/introduction/vsinstall-2.png"/><hr style="color:#d00;height:2px"/></p>
+        <p><img src="imgs/introduction/vsinstall-3.png"/><hr style="color:#d00;height:2px"/></p>
+        <p><img src="imgs/introduction/vsinstall-4.png"/></p>
+        <div class="p-3">
+          <h3>第一個C#應用程式</h3>
+          <p>
+            <ul>
+              <li>開啟Visual Studio 2022。</li>
+              <li>點選建立新專案並在專案類型選擇 <span class="text-danger">主控台</span>。</li>
+              <li>選擇 <span class="text-danger">主控台應用程式</span>。(如下圖)</li>
+              <li>不修改專案名稱</li>
+              <li>架構請選擇最新安裝.NET版本後點選建立。</li>
+              <li>建立專案後點選實心綠色三角形執行專案。</li>
+            </ul>
+            <img src="imgs/introduction/proj-1.png">
+          </p>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>  
+    
+    <!-- custom js -->
+    <script>
+      var menu_btn = document.querySelector("#menu-btn");
+      var sidebar = document.querySelector("#sidebar");
+      var container = document.querySelector(".my-container");
+      menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+      });
+    </script>
+  </body>
+</html>
