@@ -64,6 +64,7 @@
             <li>資料類型操作</li>
           </ul>
         </p>
+      </div>
         <div class="p-3">
             <h3 class="text-danger">輸入輸出</h3>
             <p>
@@ -122,22 +123,25 @@ Console.Write("{0:d6},{1:f3}",10,10.1);
               <li>
                 清單： 清單宣告為 <span class="text-danger">List&lt;資料類別&gt; 變數名稱;</span>。起始設定為 <span class="text-danger">List&lt;資料類別&gt; 變數名稱=new List&lt;資料類別&gt;();</span> 或 <span class="text-danger">List&lt;資料類別&gt; 變數名稱=new List&lt;資料類別&gt;() {{以大括號括起個別清單值}};</span>
               </li>
+              <li>
+                var(隱含類型)： 根據代入值來設定資料類型，可藉由變數GetType()函數取得變數資料類型。
+            </li>
             </ul>
             <pre><code>
 //宣告整數變數x
 int x;
 //宣告整數變數y並設定起始值5
-int x=5;
+int y=5;
 //宣告浮點變數a並設定值為1.1
 float a=1.1f;
 //宣告雙浮點變數b並設定值為1.1
-double a=1.1f;
+double b=1.1;
 //宣告布林變數c
-bool x;
+bool c;
 //宣告字元變數d 並設定值為字元a
 char d='a';
 //宣告字串變數e 並設定值為字元STUST
-char e="STUST";
+string e="STUST";
 //宣告3元素整數陣列變數f
 int[] f=new int[3];
 f[0]=1; f[1]=2; f[2]=3;
@@ -149,10 +153,13 @@ List&lt;int&gt; h=new List&lt;int&gt;();
 h.Add(1); h.Add(2); h.Add(3);
 //宣告整數清單變數i並設定起始值
 List&lt;int&gt; i=new List&lt;int&gt;(){{1},{2},{3}};
+//隱含類型m
+var m="字串";
+Console.WriteLine(m.GetType());
             </code></pre>
         </div>       
         
-      </div>
+
     </div>
 
     <!-- bootstrap js -->
