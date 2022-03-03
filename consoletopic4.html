@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C#</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Side-Nav -->
+    <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+      <ul class="nav flex-column text-white w-100">
+        <li class="nav-item" style="background-color: #fff;padding-left:10px;padding-top:10px;border-bottom: rgb(255, 115, 0) 2px solid;font-size: 16pt;">
+          <p style="color:rgb(248, 138, 11);font-weight: 700;">C#<br/>程式設計(二)</p>
+        </li>
+        <li class="mx-2">
+          <span class="menuitem"><a href="index.html" class="nav-link">簡介與軟體安裝</a></span>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic1" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic1">
+            <span class="mx-2">主控台應用程式</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic1">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic1.html">語法、變數與運算子</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic2.html">輸入輸出與資料類型操作</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic3.html">條件、迴圈與函數</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
+            </ul>
+          </div>
+        </li>     
+      </ul>
+    </div>
+
+
+    <!-- Main Wrapper -->
+    <div class="p-2 my-container active-cont">
+      <!-- Breadcrumb -->
+      <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
+        <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">物件導向介紹與實作</li>
+        </ol>
+      </div>
+      <!--End Top Nav -->
+
+      <!-- main page -->
+      <div style="margin-top:50px;">
+        <h3 class="text-danger p-3">內容涵蓋</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          <ul>
+            <li>物件導向程式- Object Oriented Programming</li>
+          </ul>
+        </p>
+        <div class="p-3">
+            <h3 class="text-danger">物件導向程式- Object Oriented Programming</h3>
+            <p>
+                傳統結構化程式將解決問題的方法切割成許多步驟，接下來將這些步驟撰寫為函數並將這些函數一個一個串接來解決問題。不同於結構化程式，物件導向程式不藉由函數或程式模組來解決問題，而是定義所謂的<span class="text-danger">物件(object)</span>，之後利用這些物件與物件的互動來解決問題。學習物件導向程式設計，大家必須要了解下列的重要概念<span class="text-danger"> 類別(class)、物件(object)、繼承(inheritance)、抽象(abstraction)、封裝(encapsulation)、多型(polymorphism)</span>，以下將對這些概念簡單說明再進行介紹。
+            <ul>
+              <li>
+                <span class="text-danger">類別(class)</span>：用於描述定義不同獨立存在的個體，類別會包含個體共同的特性(屬性)與行為(方法)，例如學生類別包含共同特性如 學號、姓名、電話等，行為包含如 資料更新等。
+              </li>
+              <li>
+                <span class="text-danger">物件(object)</span>：類別為個體的抽象定義，物件為這些類別實際的存在。例如學生類別用於描述學生應有特性及對應的行為，在C#透過 <span class="text-danger">new</span> 命令可以建立對應類別的個體也就是物件，物件可用於設定特定學生資料。
+              </li>
+              <li>
+                <span class="text-danger">繼承(inheritance)</span>：類別具有繼承的概念，新類別可以繼承現有的抽象概念類別並建立新的抽象概念類別，透過這種機制可延續先前類別設定方法。
+              </li>
+              <li>
+                <span class="text-danger">抽象(abstraction)</span>：抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節，例如我們都知道如何打開電視而不需要知道電視如何被開啟的實際步驟，這種隱藏複雜步驟的概念就稱為抽象。另外以咖啡機為例，我們只須點選喜歡咖啡種類，並不需要知道實際上咖啡機如何製作一杯咖啡，這種引隱藏執行細節的概念就是抽象。透過抽象概念，只用者只需要知道操作的介面，這個讓設計者可以更專注於設計不同或更複雜的步驟。
+              </li>
+              <li>
+                <span class="text-danger">封裝(encapsulation)</span>：隱藏物件的內部狀態和功能，並只允許透過公用的函式存取類別資料與其他功能。
+              </li>              
+              <li>
+                <span class="text-danger">多型(polymorphism)</span>：能夠以相同的方式來執行不同的動作，例如動物都會叫，透過物件導向多型的概念，雖然每種動物都會叫，可是叫的動作會不一樣。
+              </li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="p-3">
+          <h3 class="text-danger">類別(class)</h3>
+          <p>
+            我們知道物件導向程式利用物件來解決問題，而<span class="text-danger">類別(class)</span>為物件的抽象描述，他描述並定義物件的屬性與方法，使用者可以想像<span class="text-danger"> 類別為物件的定義，而物件為類別的實現</span>，另外使用者可以想像：類別就像建造房屋的藍圖，而房屋就是藍圖的實現。類別定義包含<span class="text-danger">類別名稱、屬性、方法</span>，屬性是用於描述對應類別特性，而方法是定義類別可執行的動作。<br/>
+
+            下列程式中 <span class="text-danger">using</span> 用於宣告程式使用 <span class="text-danger">System</span> 命名空間、下一行 <span class="text-danger">namespace</span> 用於定義程式本身命名空間。命名空間用於定義相近的類別與屬性，同時也可以避免專案整合時會產生名稱衝突的問題。<span class="text-danger">class Program</span>用於定義<span class="text-danger">Program</span>類別，而<span class="text-danger">Program</span>類別中<span class="text-danger">Main</span>方法是專案程式執行的進入點，C#程式只能有一個Main方法，<span class="text-danger">Main</span>方法可由主控台代入參數至變數<span class="text-danger">args</span>。
+          </p>
+          <pre><code>
+using System;
+namespace classes
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      Console.WriteLine("Hello World!");
+    }
+  }
+}
+          </code></pre>
+          <p>
+            定義C#類別、屬性、方法會包含<span class="text-danger"> 存取修飾(access modifier) </span>，存取修飾用於設定該項目可被存取的範圍，常見存取修飾包含 <span class="text-danger">public、private、protected、internal</span>，存取修飾 <span class="text-danger">public</span> 定義可為自己與其他的類別使用，存取修飾 <span class="text-danger">private</span> 定義只能給自己的類別使用，存取修飾 <span class="text-danger">protected</span> 定義可以給自己或繼承自己的後代類別所使用，存取修飾 <span class="text-danger">internal</span> 定義在同一專案下類別使用。類別名稱、屬性、方法的命名方式：<span class="text-danger">private欄位使用 _lowerCamel方式</span>，<span class="text-danger">區域變數及代入參數使用 lowerCamel方式命名</span>，其他使用PascalCase方式命名。
+          </p>
+          <pre><code>
+//未宣告存取修飾類別 預設為internal,未宣告存取修飾屬性與方法 預設為private
+//下列程式宣告兩個 internal類別 Student, Program
+//類別Student包含公共(public)屬性 Name與方法 Print
+using System;
+namespace classes {
+  class Student {
+    public String Name="甲";
+    public void Print() {
+      Console.Write("從Student類別輸出");
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+      Console.WriteLine(s.Name);
+      s.Print();
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，之後輸出<span class="text-danger">Student物件s的Name屬性</span>，請注意：因為Student類別Name屬性宣告為public，因此可以在Program類別中被存取。
+          </p>
+          <pre><code>
+//下列程式宣告兩個 internal類別 Student, Program
+//類別Student包含私有(private)屬性 Name與方法 Print
+using System;
+namespace classes {
+  class Student {
+    private String Name="甲";
+    private void Print() {
+      Console.Write("從Student類別輸出");
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+      Console.WriteLine(s.Name);
+      s.Print();
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，因為Student類別Name屬性宣告為private，因此無法在Program類別中被存取。
+          </p>
+          <pre><code>
+//下列程式宣告兩個 internal類別 Student, Program
+//類別Student包含保護(protected)屬性 Name與方法 Print
+using System;
+namespace classes {
+  class Student {
+    protected String Name="甲";
+    protected void Print() {
+      Console.Write("從Student類別輸出");
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+      Console.WriteLine(s.Name);
+      s.Print();
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，因為Student類別Name屬性宣告為protected，因此無法在Program類別中被存取。
+          </p>
+          <pre><code>
+//下列程式宣告兩個 internal類別 Student, Program
+//類別Student包含內部(internal)屬性 Name與方法 Print
+using System;
+namespace classes {
+  class Student {
+    internal String Name="甲";
+    internal void Print() {
+      Console.Write("從Student類別輸出");
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+      Console.WriteLine(s.Name);
+      s.Print();
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，之後輸出<span class="text-danger">Student物件s的Name屬性</span>，請注意：因為Student類別Name屬性宣告為internal，因此可以在Program類別中被存取。
+          </p>
+          <p class="text-success">練習：宣告Student類別包含姓名、學號、電話、地址。</p>
+          <p class="text-success">練習：宣告Dice類別包含骰子點數、點數顏色。</p>
+          <p class="text-success">練習：宣告BankAccount類別包含帳號、戶名、餘額。</p>
+          <p class="text-success">練習：承上題，請比較BankAccount類別屬性帳號、戶名、餘額存取修飾差異。</p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">物件(object)</h3>
+          <p>
+            物件為類別實際的存在，在C#透過 <span class="text-danger">new</span> 命令可以建立對應類別的物件。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">類別建構式-constructor</h3>
+          <p>
+            建構式為一方法，名稱與類別相同，他會在產生物件時被執行。建構式可以代入值用於設定對應類別物件的起始屬性值。建構式需宣告存取修飾。
+          </p>
+          <pre><code>
+// Student類別建構式
+using System;
+namespace classes {
+  class Student {
+    public Student() {
+      Console.Write("從Student類別建構式");
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式在Main方法建立一學生類別物件s，在產生物件s同時會執行物件s的建構式並輸出<span class="text-danger">從Student類別建構式</span>。
+          </p>
+          <p class="text-success">
+            練習：請在上述Student類別加入Name屬性，並設定起始值為 甲 ，之後在建構式中輸出學生姓名。
+          </p>
+          <p class="text-success">
+            練習：請在上述Student類別加入Name屬性，在建構式代入姓名並輸出。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">保留字- this</h3>
+          <p>
+            保留字<span class="text-danger">this</span>用於代表類別現在的物件，以下列程式為例，如果建構式代入參數名稱與屬性名稱相同，程式無法分辨屬性與代入參數，透過修改建構式為<span class="text-danger">this.Id=Id;</span> 就可以。
+          </p>
+          <pre><code>
+// Student類別建構式
+using System;
+namespace classes {
+  class Student {
+    private String Id;
+    public Student(String Id) {
+      Id=Id;
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student(); //建立物件
+    }
+  }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：請在上述Student類別加入Name屬性，並設定起始值為 甲 ，之後在建構式中使用 this 輸出學生姓名。
+          </p>
+          <p class="text-success">
+            練習：請在上述Student類別加入Name屬性，在建構式使用 this 代入姓名並輸出。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">保留字- static</h3>
+          <p>
+            保留字<span class="text-danger">static(靜態)</span>用於宣告共有類別、方法、屬性，當一個類別包含靜態方法、屬性，他不需要建立物件久就可以使用這些屬性或方法，使用方式為<span class="text-danger">類別名稱.靜態屬性、類別名稱.方法</span>。請注意：如果類別宣告為static，則該類別不能建立物件。
+          </p>
+          <pre><code>
+// Student類別宣告靜態變數SchoolName
+using System;
+namespace classes {
+  class Student {
+    public static String SchoolName="南臺科技大學";
+  }
+  class Program {
+    static void Main(string[] args) {
+      Console.WriteLine(Student.SchoolName);
+    }
+  }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：請在上述Student類別加入Name屬性，並利用建構式代入學生姓名，比較輸出學生姓名與校名差異。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">繼承- inheratance</h3>
+          <p>
+            C#中透過<span class="text-danger">子類別:父類別</span>用於宣告繼承父類別的子類別，子類別會繼承父類別<span class="text-danger">private</span>存取修飾以外的設定，繼承的方法可藉由<span class="text-danger">override</span>宣告來進行覆寫，但是父類別中對應方法必須宣告<span class="text-danger">virtual</span>。
+          </p>
+          <pre><code>
+// 
+using System;
+namespace classes {
+  class Animal {
+    public String Name;
+  }
+  class Dog:Animal {
+    public void Display() {
+      Console.WriteLine("動物:"+this.Name);
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Dog d=new Dog();
+      d.Name="柴犬";
+      d.Display();
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式宣告類別Animal及繼承Animal類別的Dog類別，Dog類別繼承類別Animal的Name屬性，因為Name屬性為public。
+          </p>
+          <p class="text-success">
+            練習：請在Animal類別加入feed方法，並利用override保留字覆寫子類別 bird 與 dog 不同feed方法。
+          </p>
+        </div>
+
+
+
+              
+        
+      </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>  
+    
+    <!-- custom js -->
+    <script>
+      var menu_btn = document.querySelector("#menu-btn");
+      var sidebar = document.querySelector("#sidebar");
+      var container = document.querySelector(".my-container");
+      menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+      });
+    </script>
+  </body>
+</html>
