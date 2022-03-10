@@ -303,10 +303,10 @@ namespace classes {
         <div class="p-3">
           <h3 class="text-danger">繼承- inheratance</h3>
           <p>
-            C#中透過<span class="text-danger">子類別:父類別</span>用於宣告繼承父類別的子類別，子類別會繼承父類別<span class="text-danger">private</span>存取修飾以外的設定，繼承的方法可藉由<span class="text-danger">override</span>宣告來進行覆寫，但是父類別中對應方法必須宣告<span class="text-danger">virtual</span>。
+            C#中透過<span class="text-danger">子類別:父類別</span>用於宣告繼承父類別的子類別，子類別會繼承父類別<span class="text-danger">private</span>存取修飾以外的設定，繼承的方法可藉由<span class="text-danger">override</span>宣告來進行覆寫，但是父類別中對應方法必須宣告<span class="text-danger">virtual</span>，覆寫的概念會在多型(polymorphism)進行細部介紹。
           </p>
           <pre><code>
-// 
+// Animal類別為父類別，Dog類別繼承Animal類別並新增Display方法
 using System;
 namespace classes {
   class Animal {
@@ -326,12 +326,82 @@ namespace classes {
   }
 }
           </code></pre>
+          <pre><code>
+// Animal類別為父類別，Dog類別繼承Animal類別並新增Display方法
+using System;
+namespace classes {
+  class Animal {
+    public String Name;
+  }
+  class Dog:Animal {
+    public void Display() {
+      Console.WriteLine("動物:"+this.Name);
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Dog d=new Dog();
+      d.Name="柴犬";
+      d.Display();
+    }
+  }
+}
+          </code></pre>
+          <pre><code>
+  // Animal類別為父類別，Dog類別繼承Animal類別並覆寫Display方法
+  using System;
+  namespace classes {
+    class Animal {
+      public String Name;
+      public virtual void Display() {
+        Console.WriteLine("動物:");
+      }
+    }
+    class Dog:Animal {
+      public override void Display() {
+        Console.WriteLine("Dog動物:"+this.Name);
+      }
+    }
+    class Program {
+      static void Main(string[] args) {
+        Dog d=new Dog();
+        d.Name="柴犬";
+        d.Display();
+      }
+    }
+  }
+            </code></pre>
           <p>
-            上述程式宣告類別Animal及繼承Animal類別的Dog類別，Dog類別繼承類別Animal的Name屬性，因為Name屬性為public。
+            繼承(inheritance)讓程式可以重複使用(子類別繼承父類別)屬性與方法、新增自己的屬性與方法、覆寫繼承方法。
           </p>
           <p class="text-success">
-            練習：請在Animal類別加入feed方法，並利用override保留字覆寫子類別 bird 與 dog 不同feed方法。
+            練習：請定義Animal類別，包含屬性 feed。
           </p>
+          <p class="text-success">
+            練習：請定義 Canivore類別，設定 feed 為四足動物。
+          </p>
+          <p class="text-success">
+            練習：請定義 Pasivore類別，設定 feed 為水生動物。
+          </p>
+          <p class="text-success">
+            練習：請定義Animal類別，包含無傳回值可覆寫動作 voice。
+          </p>
+          <p class="text-success">
+            練習：請定義 Canivore類別，覆寫動作 voice並顯示 肉食性動物聲音。
+          </p>
+          <p class="text-success">
+            練習：請定義 Pasivore類別，覆寫動作 voice並顯示 水食性動物聲音。
+          </p>
+          <p class="text-success">
+            練習：請定義 Person類別包含<span class="text-danger">SetAge(int n)</span>與<span class="text-danger">Greeting()</span>方法，<span class="text-danger">SetAge(int n)</span>設定該<span class="text-danger">Person</span>的<span class="text-danger">age(年齡)</span>，<span class="text-danger">Greeting()</span>顯示<span class="text-danger">您好</span>。定義Student與Teacher類別，這兩個類別均繼承 Person類別，Student類別定義公共方法<span class="text-danger">GotoClasses</span> 顯示 <span class="text-danger">我去上學</span>，同時定義公共方法<span class="text-danger">ShowAge</span> 顯示 <span class="text-danger">我現在xx歲</span>，<span class="text-danger">xx</span>代表學生現在<span class="text-danger">age(年齡)</span>。Teacher類別定義公共方法<span class="text-danger">Explain</span> 顯示 <span class="text-danger">開始解說</span>。最後定義StudentAndTeacherTest類別包含Main，新增一個<span class="text-danger">Person</span>並讓他顯示 您好，新增一位21歲學生並讓他說 您好並顯示他的年齡，新增一位30歲Teacher並讓他說 您好並執行解說。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">抽象(Abstraction)</h3>
+          <p>
+            抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節。在C#中可使用關鍵字<span class="text-danger">abstract</span>來定義抽象 <span class="text-danger">類別或方法</span>，<span class="text-danger">請注意：抽象類別僅能被繼承</span>。
+          </p>
+          
         </div>
 
 
