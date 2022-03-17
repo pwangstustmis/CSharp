@@ -61,7 +61,7 @@
       <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
         <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">語法、變數與運算子</li>
+          <li class="breadcrumb-item">SFML- 套件安裝與測試</li>
         </ol>
       </div>
       <!--End Top Nav -->
@@ -71,47 +71,73 @@
         <h3 class="text-danger p-3">內容涵蓋</h3>
         <p class="px-3" style="margin-top:-20px;">
           <ul>
-            <li>語法、變數</li>
-            <li>運算子</li>
+            <li>SFML- 套件安裝與測試</li>
           </ul>
         </p>
         <div class="p-3">
-            <h3 class="text-danger">語法、變數</h3>
+            <h3 class="text-danger">SFML- 套件安裝與測試</h3>
             <p>
-            不同於Python，C#程式每行命令必須以 <span class="text-danger">;</span> 結尾，同時程式區塊必須包含於兩個 <span class="text-danger">{ }</span> 之間。C#變數名稱同Python，變數名稱可由英文字或底線符號(_)開始，同時變數名稱大小寫英文字為不同的變數。程式註解單行使用 <span class="text-danger">//</span>，多行使用 <span class="text-danger">/* */</span> 將註解範圍框起來。因為C#為強型態程式語言，變數設定為 <span class="text-danger">資料類型 變數名稱;</span> 或 <span class="text-danger">資料類型 變數名稱1,變數名稱2;</span> 或 <span class="text-danger">資料類型 變數名稱=設定值;</span>
-            </p>
-            <pre><code>
-//單行註解
-/* 多
-行
-註
-解
-*/
-            </code></pre>
+            <a href="https://www.sfml-dev.org/" target="_blank">SMFL</a>提供簡單套件功能system、window、graphics、audio、network用於製作遊戲與多媒體應用。我們將整合SFML套件於C#物件導向程式設計。
+        </div>
+
+        <div class="p-3">
+          <h3 class="text-danger">套件安裝</h3>
+          <p>
+            請先建立C# console應用程式，開啟<span class="text-danger">工具-NuGet套件管理員-套件管理器主控台</span>後，將下列命令貼製主控台並執行套件安裝。<span class="text-danger">請注意：請各應用程式專案都必須安裝套件。</span>
+            
+          </p>
+          <pre><code>
+Install-Package SFML.Net -Version 2.5.0
+          </code></pre>
         </div>
         <div class="p-3">
-            <h3 class="text-danger">運算子</h3>
-            <p>
-            運算子(operator)用於變數與值的運算，常用運算子包含計算、設定、比較、邏輯、隸屬等，接下來每個類別進行介紹。
-            </p>
-            <ul>
-                <li>
-                    計算運算子 <span class="text-danger">+、-、*、/、%、++、--</span> ，除了加、減、乘、除之外， % 代表求餘數， ++ 代表增加1簡寫，-- 代表減少1簡寫。
-                </li>
-                <li>
-                    設定運算子 <span class="text-danger">=、+=、-=、*=、/=、%=</span> ，用於變數設定表示，以 x+=5為例，他代表 x=x+5。
-                </li>
-                <li>
-                    比較運算子 <span class="text-danger">==、!=、&gt;、&gt;=、&lt;、&lt;=</span> ，用於條件比較分別為 等於、不等於、大於、大於等於、小於、小於等於。
-                </li>
-                <li>
-                    邏輯運算子 <span class="text-danger">&&、||、!</span> ，用於串接多個條件比較分別為 且、或、否定。
-                </li>
-            </ul>
+          <h3 class="text-danger">套件測試</h3>
+          <p>
+            請將下列程式複製並貼於專案中 <span class="text-danger">Program.cs</span> 後執行，程式會開啟 640x480 藍色視窗。
+          </p>
+          <pre><code>
+using System;
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+
+namespace classes
+{
+    class Program
+    {
+        const int WIDTH = 640;
+        const int HEIGHT = 480;
+        const string TITLE = "套件測試";
+        
+        static void Main(string[] args)
+        {
+            VideoMode mode = new VideoMode(WIDTH, HEIGHT); //宣告2D模式
+            RenderWindow window = new RenderWindow(mode, TITLE); //建立對應模式視窗物件
+
+            window.SetVerticalSyncEnabled(true); //避免殘影
+
+            window.Closed += (sender, args) => window.Close(); //設定視窗關閉事件
+
+            while (window.IsOpen) //主要遊戲迴圈
+            {
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
+                {
+                    window.Close();
+                }
+
+                window.DispatchEvents(); //啟動所有等待中事件
+                window.Clear(Color.Blue); //清除上一次畫面並設定背景顏色
+                window.Display(); //執行現在顯示結果
+            }
+        }
+    }
+}
+          </code></pre>
         </div>
- 
         
-        
+
+
+
+              
         
       </div>
     </div>

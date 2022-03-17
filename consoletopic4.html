@@ -39,6 +39,17 @@
               <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
             </ul>
           </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic3" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic3">
+            <span class="mx-2">SFML</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic3">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="sfml-install.html">套件安裝與測試</a></li>
+            </ul>           
+          </div>
         </li>     
       </ul>
     </div>
@@ -135,7 +146,7 @@ namespace classes {
 }
           </code></pre>
           <p>
-            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，之後輸出<span class="text-danger">Student物件s的Name屬性</span>，請注意：因為Student類別Name屬性宣告為public，因此可以在Program類別中被存取。
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件</span>，之後輸出<span class="text-danger">Student物件的Name屬性</span>，請注意：因為Student類別Name屬性宣告為public，因此可以在Program類別中被存取。
           </p>
           <pre><code>
 //下列程式宣告兩個 internal類別 Student, Program
@@ -158,7 +169,7 @@ namespace classes {
 }
           </code></pre>
           <p>
-            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，因為Student類別Name屬性宣告為private，因此無法在Program類別中被存取。
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件</span>，因為Student類別Name屬性宣告為private，因此無法在Program類別中被存取。
           </p>
           <pre><code>
 //下列程式宣告兩個 internal類別 Student, Program
@@ -181,7 +192,7 @@ namespace classes {
 }
           </code></pre>
           <p>
-            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，因為Student類別Name屬性宣告為protected，因此無法在Program類別中被存取。
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件</span>，因為Student類別Name屬性宣告為protected，因此無法在Program類別中被存取。
           </p>
           <pre><code>
 //下列程式宣告兩個 internal類別 Student, Program
@@ -204,12 +215,38 @@ namespace classes {
 }
           </code></pre>
           <p>
-            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件s</span>，之後輸出<span class="text-danger">Student物件s的Name屬性</span>，請注意：因為Student類別Name屬性宣告為internal，因此可以在Program類別中被存取。
+            上述程式一開始會執行Program類別Main方法，Main方法開始透過<span class="text-danger">new</span>命令建立<span class="text-danger">Student物件</span>，之後輸出<span class="text-danger">Student物件s的Name屬性</span>，請注意：因為Student類別Name屬性宣告為internal，因此可以在Program類別中被存取。
           </p>
           <p class="text-success">練習：宣告Student類別包含姓名、學號、電話、地址。</p>
           <p class="text-success">練習：宣告Dice類別包含骰子點數、點數顏色。</p>
           <p class="text-success">練習：宣告BankAccount類別包含帳號、戶名、餘額。</p>
-          <p class="text-success">練習：承上題，請比較BankAccount類別屬性帳號、戶名、餘額存取修飾差異。</p>
+          <p class="text-success">練習：請定義遊戲 <a href="https://en.wikipedia.org/wiki/Pong" target="_blank">Pong</a>棒子類別，包含私有 p_Width、p_Height、p_X、p_Y分別代表棒子寬、高、X軸座標、Y軸座標，公有兩個方法 moveLeft、moveRight。</p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">類別-列舉類別</h3>
+          <p>
+            列舉類別用於宣告一串不可變動常數的組合，設計者透過 <span class="text-danger">enum</span> 命令宣告列舉類別，列舉類別也可宣告於其他類別中，使用列舉類別僅需使用 <span class="text-danger">類別.列舉值</span> 即可傳回類舉類別。
+          </p>
+          <pre><code>
+using System;
+namespace classes
+{
+    enum Dept
+    {
+        資訊管理系,
+        企業管理系,
+        財務金融系
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dept d = Dept.資訊管理系;
+            Console.WriteLine(d);
+        }
+    }
+}
+          </code></pre>
         </div>
         <div class="p-3">
           <h3 class="text-danger">物件(object)</h3>
@@ -220,7 +257,7 @@ namespace classes {
         <div class="p-3">
           <h3 class="text-danger">類別建構式-constructor</h3>
           <p>
-            建構式為一方法，名稱與類別相同，他會在產生物件時被執行。建構式可以代入值用於設定對應類別物件的起始屬性值。建構式需宣告存取修飾。
+            建構式為一方法，名稱與類別相同，他會在產生物件時被執行。建構式可以代入值用於設定對應類別物件的起始屬性值。建構式需宣告存取修飾，建構式可以設定代入值。
           </p>
           <pre><code>
 // Student類別建構式
@@ -238,14 +275,38 @@ namespace classes {
   }
 }
           </code></pre>
-          <p>
+          p>
             上述程式在Main方法建立一學生類別物件s，在產生物件s同時會執行物件s的建構式並輸出<span class="text-danger">從Student類別建構式</span>。
+          </p>
+          <pre><code>
+// Student類別建構式有代入值
+using System;
+namespace classes {
+  class Student {
+    public string name;
+    public Student(string _name) {
+      name=_name;
+    }
+  }
+  class Program {
+    static void Main(string[] args) {
+      Student s=new Student("John"); //建立物件
+      Console.WriteLine(s.name);
+    }
+  }
+}
+          </code></pre>
+          <p>
+            上述程式在Main方法建立一學生類別物件s，在產生物件s同時在建立物件s時將起始姓名代入建構式中。
           </p>
           <p class="text-success">
             練習：請在上述Student類別加入Name屬性，並設定起始值為 甲 ，之後在建構式中輸出學生姓名。
           </p>
           <p class="text-success">
             練習：請在上述Student類別加入Name屬性，在建構式代入姓名並輸出。
+          </p>
+          <p class="text-success">
+            練習：請將上述Student類別中Name屬性設為私有，並加入公有方法 setName來設定學生姓名。
           </p>
         </div>
         <div class="p-3">
@@ -401,6 +462,44 @@ namespace classes {
           <p>
             抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節。在C#中可使用關鍵字<span class="text-danger">abstract</span>來定義抽象 <span class="text-danger">類別或方法</span>，<span class="text-danger">請注意：抽象類別僅能被繼承</span>。
           </p>
+          
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">封裝(Encapsulation)</h3>
+          <p>
+            隱藏物件的內部狀態和功能，並只允許透過公用的函式存取類別資料與其他功能。藉由宣告存取修飾詞來隱藏不希望被使用者直接存取內容稱為封裝。
+          </p>
+          
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">多型(Polymorphism)</h3>
+          <p>
+            多型是指他可以允許類別中具有名稱相同但型態不同的函數，多型介紹單一類別多型(overload, 過載)與繼承類別多型包含(override與方法隱藏)。
+          </p>
+          <ul>
+            <li>
+              <span class="text-danger">overload(過載)</span>：在同一類別中方法名相同、引數或返回值不同的多個方法即為方法過載。
+            </li>
+            <pre><code>
+// Animal類別為父類別，Dog類別繼承Animal類別並覆寫Display方法
+  using System;
+  namespace classes {
+    class Animal {
+      public String Name;
+      public void Animal() {
+        name="無";
+      }
+      public void Animal(string _name) {
+        name=_name;
+      }
+    }
+
+    class Program {
+      Animal a1=new Animal();
+    }
+  }
+            </code></pre>
+          </ul>
           
         </div>
 
