@@ -104,6 +104,9 @@
         <div class="p-3">
           <h3 class="text-danger">類別(class)</h3>
           <p>
+            <span class="text-danger">重點提示</span>：不同於功能性程式設計(functional programming)，類別為描述對象的整合體，他會包含描述對象的<span class="text-danger">屬性與對應的動作</span>，當設計者完整知道如何規劃與設計描述對象時，可用單一類別來描述對象。當使用者部分了解或不了解描述對象的動作時，可以透過抽象描述<span class="text-danger">abstract、interface</span>來定義類別，之後再對這些動作進行實際製作。同時類別具有繼承功能，讓設計者能不斷擴展原先設計藍圖來因應後續新增的功能與變化。
+          </p>
+          <p>
             我們知道物件導向程式利用物件來解決問題，而<span class="text-danger">類別(class)</span>為物件的抽象描述，他描述並定義物件的屬性與方法，使用者可以想像<span class="text-danger"> 類別為物件的定義，而物件為類別的實現</span>，另外使用者可以想像：類別就像建造房屋的藍圖，而房屋就是藍圖的實現。類別定義包含<span class="text-danger">類別名稱、屬性、方法</span>，屬性是用於描述對應類別特性，而方法是定義類別可執行的動作。<br/>
 
             下列程式中 <span class="text-danger">using</span> 用於宣告程式使用 <span class="text-danger">System</span> 命名空間、下一行 <span class="text-danger">namespace</span> 用於定義程式本身命名空間。命名空間用於定義相近的類別與屬性，同時也可以避免專案整合時會產生名稱衝突的問題。<span class="text-danger">class Program</span>用於定義<span class="text-danger">Program</span>類別，而<span class="text-danger">Program</span>類別中<span class="text-danger">Main</span>方法是專案程式執行的進入點，C#程式只能有一個Main方法，<span class="text-danger">Main</span>方法可由主控台代入參數至變數<span class="text-danger">args</span>。
@@ -460,8 +463,65 @@ namespace classes {
         <div class="p-3">
           <h3 class="text-danger">抽象(Abstraction)</h3>
           <p>
-            抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節。在C#中可使用關鍵字<span class="text-danger">abstract</span>來定義抽象 <span class="text-danger">類別或方法</span>，<span class="text-danger">請注意：抽象類別僅能被繼承</span>。
+            抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節。在C#中定義抽象概念包含兩個關鍵字<span class="text-danger">abstract、interface</span>，關鍵字<span class="text-danger">abstract</span>用於定義抽象 <span class="text-danger">類別或方法</span>，同時<span class="text-danger">abstract</span>抽象類別僅能被繼承，當設計者對類別方法某些部分了解如何製作，而某些部分不了解如何製作，則可宣告這個類別為<span class="text-danger">abstract</span>抽象類別，透過繼承並進行覆寫(override)完成未完成之方法。
           </p>
+          <pre><code>
+public abstract class MobilePhone
+{
+  public void Call()
+  {
+    Console.WriteLine("撥電話");
+  }
+  public void Sms()
+  {
+    Console.WriteLine("簡訊");
+  }
+  public abstract void Color();
+  public abstract void ScreenSize();
+  public abstract void OperatingSystem();
+}
+public class iPhone : MobilePhone
+{
+  public override void Color()
+  {
+    Console.WriteLine("iPhone顏色");
+  }
+  public override void ScreenSize()
+  {
+    Console.WriteLine("iPhone大小");
+  }
+  public override void OperatingSystem()
+  {
+    Console.WriteLine("iPhone作業系統");
+  }
+}
+          </code></pre>
+          <p>
+            關鍵字<span class="text-danger">interface</span>用於定義抽象 <span class="text-danger">方法</span>，不設定存取修飾，預設為共有(public)，透過繼承並完成未完成之方法，當設計者對方法不了解如何製作時，則可宣告<span class="text-danger">interface</span>定義方法並透過繼承完成未完成之方法。
+          </p>
+          <pre><code>
+interface MobilePhone
+{
+  void Color();
+  void ScreenSize();
+  void OperatingSystem();
+}
+public class iPhone : MobilePhone
+{
+  public void Color()
+  {
+    Console.WriteLine("iPhone顏色");
+  }
+  public void ScreenSize()
+  {
+    Console.WriteLine("iPhone大小");
+  }
+  public void OperatingSystem()
+  {
+    Console.WriteLine("iPhone作業系統");
+  }
+}
+          </code></pre>
           
         </div>
         <div class="p-3">
@@ -474,11 +534,62 @@ namespace classes {
         <div class="p-3">
           <h3 class="text-danger">多型(Polymorphism)</h3>
           <p>
-            多型是指他可以允許類別中具有名稱相同但型態不同的函數，多型介紹單一類別多型(overload, 過載)與繼承類別多型包含(override與方法隱藏)。
+            多型是指他可以允許類別中具有名稱相同但型態不同的函數，多型介紹單一類別多型(overload,過載)與繼承類別多型包含(方法隱藏與override)。
           </p>
           <ul>
             <li>
-              <span class="text-danger">overload(過載)</span>：在同一類別中方法名相同、引數或返回值不同的多個方法即為方法過載。
+              <span class="text-danger">overload(過載)</span>：在同一類別中方法名稱相同、引數或返回值不同的多個方法即為過載(overload)。
+            </li>
+            <pre><code>
+// Animal類別建構式過載
+  using System;
+  namespace classes {
+    class Animal {
+      public String Name;
+      public Animal() {
+        Name="無";
+      }
+      public Animal(string _name) {
+        Name=_name;
+      }
+    }
+
+    class Program {
+      static void Main(string[] args) {
+        Animal a1=new Animal();
+      }     
+    }
+  }
+            </code></pre>
+            <li>
+              <span class="text-danger">方法隱藏</span>：子類別可藉由<span class="text-danger">new</span>命令重新定義與父類別相同名稱的函數，' 子類別呼叫該函數時，是呼叫子類別定義函數，但是子類別可以透過span class="text-danger">base</span>命令來呼叫父類別的函數。
+            </li>
+            <pre><code>
+// Dog類別繼承Animal類別並隱藏Roar方法
+  using System;
+  namespace classes {
+    class Animal {
+      public void Roar() {
+        Console.WriteLine("無");
+      }
+    }
+    class Dog:Animal {
+      public new void Roar() {
+        base.Roar();           //透過base呼叫Dog父類別Animal的Roar方法
+        Console.WriteLine("汪");
+      }
+    }
+
+    class Program {
+      static void Main(string[] args) {
+        Dog d=new Dog();
+        d.Roar();
+      }      
+    }
+  }
+            </code></pre>
+            <li>
+              <span class="text-danger">override(覆寫)</span>：對子類別繼承父類別函數進行覆寫，請注意：在子類別的函數名稱與參數必須與父類別相同，同時父類別的函數必須加上<span class="text-danger">virtual</span>宣告，子類別函數必須加上<span class="text-danger">override</span>宣告。建構式可透過<span class="text-danger">base</span>命令來呼叫。
             </li>
             <pre><code>
 // Animal類別為父類別，Dog類別繼承Animal類別並覆寫Display方法
@@ -486,16 +597,26 @@ namespace classes {
   namespace classes {
     class Animal {
       public String Name;
-      public void Animal() {
-        name="無";
+      public virtual void Roar() {
+        Console.WriteLine("無");
       }
-      public void Animal(string _name) {
-        name=_name;
+      public Animal(string _name) {
+        Name=_name;
+      }
+    }
+    class Dog:Animal {
+      public Dog(string _name) : base(_name)
+      {
+      }
+      public override void Roar() {
+        Console.WriteLine("汪");
       }
     }
 
     class Program {
-      Animal a1=new Animal();
+      static void Main(string[] args) {
+        Dog d=new Dog("柴犬");
+      }     
     }
   }
             </code></pre>
