@@ -252,6 +252,30 @@ namespace classes
           </code></pre>
         </div>
         <div class="p-3">
+          <h3 class="text-danger">類別屬性使用(attribute)</h3>
+          <p>
+            類別屬性存取時可透過 <span class="text-danger">get、set</span> 設定存取的程式區塊，設定方式如下。<span class="text-danger">一般屬性值設定均置於一私有暫時變數中，並利用此私有暫時變數來儲存屬性值</span>。透過<span class="text-danger">get、set</span>動作可確保資料正確性等。
+          </p>
+          <pre><code>
+存取修飾 class 類別名稱 {
+  存取修飾 屬性類型 屬性名稱 {
+    get; set;
+  }
+}
+
+存取修飾 class 類別名稱 {
+  private 屬性類型 _屬性名稱=起始值;
+  存取修飾 屬性類型 屬性名稱 {
+    get => _屬性名稱;
+    set => _屬性名稱=value;
+  }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：請建立類別 Person，包含字串類型屬性 Gender(性別)，預設為 女，在設定屬性值時如果性別不為男或女請利用 throw new ArgumentException輸出值行錯誤。
+          </p>
+        </div>
+        <div class="p-3">
           <h3 class="text-danger">物件(object)</h3>
           <p>
             物件為類別實際的存在，在C#透過 <span class="text-danger">new</span> 命令可以建立對應類別的物件。
@@ -621,7 +645,35 @@ public class iPhone : MobilePhone
   }
             </code></pre>
           </ul>
-          
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">類別練習</h3>
+          <p>
+            請利用本節所教授的內容，排列組合製作下列系統。
+          </p>
+          <p class="text-success">
+            練習1: 建立一個網路書籍訂購系統(類別一定是名詞，名詞不一定是類別，方法一定是動作)
+            <ul>
+              <li>
+                顧客可以查詢書籍資料如書名、作者、出版社及簡介
+              </li>
+              <li>
+                顧客可以填入數量訂購想要的書籍
+              </li>
+              <li>
+                顧客可以預定書籍並指定送貨時間、地點及對象
+              </li>
+              <li>
+                顧客可以查詢過去一年訂購紀錄
+              </li>
+              <li>
+                送貨前七日，店長可以取消顧客訂單
+              </li>
+              <li>
+                店長可以管理(新增、修改、刪除)書籍資料
+              </li>
+            </ul>
+          </p>
         </div>
 
 
