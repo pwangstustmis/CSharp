@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C#</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Side-Nav -->
+    <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+      <ul class="nav flex-column text-white w-100">
+        <li class="nav-item" style="background-color: #fff;padding-left:10px;padding-top:10px;border-bottom: rgb(255, 115, 0) 2px solid;font-size: 16pt;">
+          <p style="color:rgb(248, 138, 11);font-weight: 700;">C#<br/>程式設計(二)</p>
+        </li>
+        <li class="mx-2">
+          <span class="menuitem"><a href="index.html" class="nav-link">簡介與軟體安裝</a></span>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic1" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic1">
+            <span class="mx-2">主控台應用程式</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic1">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic1.html">語法、變數與運算子</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic2.html">輸入輸出與資料類型操作</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic3.html">條件、迴圈與函數</a></li>
+            </ul>
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="consoletopic4.html">物件導向介紹與實作</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" href="#topic3" class="nav-item" data-bs-toggle="collapse" aria-expanded="false" aria-controls="topic3">
+            <span class="mx-2">SFML</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="collapse" id="topic3">
+            <ul>
+              <li class="menuitem"><a class="nav-link" href="sfml-install.html">套件安裝與測試</a></li>
+              <li class="menuitem"><a class="nav-link" href="sfml-topic1.html">SFML模組</a></li>
+            </ul>           
+          </div>
+        </li>     
+      </ul>
+    </div>
+
+
+    <!-- Main Wrapper -->
+    <div class="p-2 my-container active-cont">
+      <!-- Breadcrumb -->
+      <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
+        <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">SFML- 模組</li>
+        </ol>
+      </div>
+      <!--End Top Nav -->
+
+      <!-- main page -->
+      <div style="margin-top:50px;">
+        <h3 class="text-danger p-3">內容涵蓋</h3>
+        <p class="px-3" style="margin-top:-20px;">
+          <ul>
+            <li>SFML- 模組簡介</li>
+            <li>SFML- Window模組</li>
+          </ul>
+        </p>
+        <div class="p-3">
+          <h3 class="text-danger">SFML- 模組簡介</h3>
+          <p>
+            SFML(Simple and Fast Multimedia Library)為一個跨平台簡單快速的多媒體程式庫，程式庫包含<span class="text-danger">Window、Graphics、Audio、Network、System</span>模組。
+            <ul>
+              <li>
+                <span class="text-danger">Window模組</span>：提供遊戲視窗定義、事件處理、使用者輸入等。
+              </li>
+              <li>
+                <span class="text-danger">Graphics模組</span>：提供2D遊戲物件。
+              </li>
+              <li>
+                <span class="text-danger">Audio模組</span>：提供聲音相關處理。
+              </li>
+              <li>
+                <span class="text-danger">Network模組</span>：提供網路傳遞功能。
+              </li>
+              <li>
+                <span class="text-danger">System模組</span>：提供系統相關服務功能。
+              </li>
+            </ul>
+            接下來將介紹遊戲模組常用功能。 請先建立C# console應用程式，開啟<span class="text-danger">工具-NuGet套件管理員-套件管理器主控台</span>後，將下列命令貼製主控台並執行套件安裝。<span class="text-danger">請注意：請各應用程式專案都必須安裝套件。</span>
+          </p>
+          <pre><code>
+Install-Package SFML.Net -Version 2.5.0
+          </code></pre>
+        </div>
+        <div class="p-3">
+            <h3 class="text-danger">SFML- Window模組</h3>
+            <p>
+              <a href="https://www.sfml-dev.org/documentation/2.5.1/group__window.php" target="_blank">Windows模組</a>將涵蓋<span class="text-danger">VideoMode、RenderWindow、Event、Keyboard、Mouse</span>類別。使用Window模組必須在程式開始使用<span class="text-danger">using SFML.Window;</span>匯入<span class="text-danger">Window</span>模組。
+              <ul>
+                <li>
+                  <span class="text-danger">VideoMode</span>：用於建立遊戲視窗模式，透過代入視窗寬與高來建立<span class="text-danger">VideoMode</span>物件。
+                  <pre><code>
+VideoMode mode=new VideoMode(800,600); //設定寬800點、高600點螢幕模式
+                  </code></pre>
+                </li>
+                <li>
+                  <span class="text-danger">RenderWindow</span>：用於建立遊戲渲染視窗，透過代入視窗模式建立<span class="text-danger">RenderWindow</span>物件。除此之外RenderWindow建構式支援過載(overload)，除標題外，他也可以加入<span class="text-danger">Styles</span>物件設定，用於設定不同遊戲視窗樣式。
+                  <pre><code>
+RenderWindow window=new RenderWindow(new VideoMode(800,600),"測試視窗"); //設定寬800點、高600點標題為"測試視窗"的選染視窗
+RenderWindow window=new RenderWindow(new VideoMode(800,600),"測試視窗",Styles.Fullscreen); //設定遊戲視窗為全螢幕模式
+                  </code></pre>
+                  渲染視窗物件常用方法包含<span class="text-danger">isOpen()、Close()、setVerticalSyncEnabled()、Draw()、Clear()、Display()</span>。
+                  <ul>
+                    <li>
+                      <span class="text-danger">isOpen()</span>：傳回布林值(true/false)標示視窗是否開啟。
+                    </li>
+                    <li>
+                      <span class="text-danger">Close()</span>：執行關閉視窗的動作。
+                    </li>
+                    <li>
+                      <span class="text-danger">setVerticalSyncEnabled()</span>：一般代入布林值true，目的是避免殘影。
+                    </li>
+                    <li>
+                      <span class="text-danger">Draw()</span>：會代入要繪製物件，目的是將物件加入畫面。
+                    </li>
+                    <li>
+                      <span class="text-danger">Clear()</span>：清除視窗畫面內容。
+                    </li>
+                    <li>
+                      <span class="text-danger">Display()</span>：顯示現在畫面內容。
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              下列程式以<span class="text-danger">全螢幕方式顯示960x480遊戲視窗，當使用者按下ESC鍵關閉時遊戲視窗。</span>
+              <pre><code>
+using SFML.Graphics;
+using SFML.Window;
+
+namespace classes
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      RenderWindow window = new RenderWindow(new VideoMode(960,480), "960x480視窗",Styles.Fullscreen);
+      window.SetVerticalSyncEnabled(true); //避免殘影
+
+      while (window.IsOpen) //主要遊戲迴圈
+      {
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
+        {
+          window.Close();
+        }
+
+        window.DispatchEvents(); //啟動所有等待中事件
+        window.Display(); //執行現在顯示結果
+      }
+    }
+  }
+}
+              </code></pre>         
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">事件</h3>
+          <p>
+            物件可藉由產生訊號來執行某些動作，這些訊號稱為事件(Event)，以上述程式為例，<span class="text-danger">Window</span>模組中的<span class="text-danger">Keyboard</span>物件中<span class="text-danger">IsKeyPressed()</span>可用於偵測使用者是否按下鍵盤，代入<span class="text-danger">Keyboard.Key.Escape</span>鍵值用於判斷使用者是否按下ESC鍵。除了<span class="text-danger">Keyboard</span>物件，<span class="text-danger">Window</span>模組也包含<span class="text-danger">Mouse</span>物件。
+          </p>
+          <p class="text-success">
+            練習：請修改上述程式，將點擊鍵盤<span class="text-danger">ESC</span>鍵關閉遊戲視窗，改為點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
+          </p>
+          <p>
+            在C#中，除了向上述程式將事件偵測放在遊戲視窗迴圈中，我們也可以將事件所需執行程式附加於事件上，將上述遊戲迴圈中如下程式片段移除。
+          </p>
+          <pre><code>
+if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
+{
+  window.Close();
+}
+          </code></pre>
+          <p>
+            並在遊戲迴圈前加入下列程式片段，一樣可以按下<span class="text-danger">ESC</span>鍵關閉遊戲視窗。下列程式將事件處理動作附加於事件本身。
+          </p>
+          <pre><code>
+window.KeyReleased+= (sender, args) =&gt;{
+  if (args.Code == Keyboard.Key.Escape)
+    window.Close();
+};
+          </code></pre>
+          <p class="text-success">
+            練習：請修改上述程式並使用事件附加處理程式方式，將點擊鍵盤<span class="text-danger">ESC</span>鍵關閉遊戲視窗，改為點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
+          </p>
+          <p>              
+            事件附加處理程式除直接撰寫程式外，也可套用函數呼叫方式，
+            以SFML視窗<span class="text-danger">KeyPressed</span>事件為例，下列程式片段將處理程式<span class="text-danger">KeyProcess</span>附加於SFML視窗<span class="text-danger">KeyPressed</span>事件。請注意：事件處理程式會代入兩個值<span class="text-danger">object(物件)、SFML.Window.KeyEventArgs(事件類別)</span>，物件<span class="text-danger">sender</span>為產生事件的對象(在本單元為渲染視窗)，由於代入值可能為空值(null)，因此在類別定義時須加上<span class="text-danger">?</span>，處理程式<span class="text-danger">KeyProcess</span>在傳送物件不為空值時，將傳送物件<span class="text-danger">sender</span>轉換為<span class="text-danger">RenderWindow</span>物件，之後判斷按下鍵值是否為ESC鍵，如果是，關閉渲染視窗。
+          </p>
+          <pre><code>
+private static void keyProcess(object? sender,SFML.Window.KeyEventArgs evt)
+{           
+  if (sender!=null)
+    {
+      RenderWindow window = (RenderWindow)sender;
+      if (evt.Code==SFML.Window.Keyboard.Key.Escape)
+      window.Close();
+    }
+}
+window.KeyPressed += new EventHandler<KeyEventArgs>(keyProcess);
+
+          </code></pre>
+          完整程式如下：
+          <pre><code>
+using System;
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+
+namespace classes
+{
+  class Program
+  {
+    private static void keyProcess(object? sender,SFML.Window.KeyEventArgs evt)
+    {            
+      if (sender!=null)
+      {
+        RenderWindow window = (RenderWindow)sender;
+        if (evt.Code==SFML.Window.Keyboard.Key.Escape)
+          window.Close();
+      }
+    }
+    static void Main(string[] args)
+    {
+      RenderWindow window = new RenderWindow(new VideoMode(980,800),"My Window");
+      window.SetVerticalSyncEnabled(true); //避免殘影
+      window.KeyPressed += new EventHandler&lt;KeyEventArgs&gt;(keyProcess);
+
+      while (window.IsOpen) //主要遊戲迴圈
+      {
+
+        window.DispatchEvents(); //送出所有等待事件
+        window.Clear(); //清除前一個畫面內容
+        window.Display(); //顯示現在畫面內容
+      }
+    }
+  }
+}
+          </code></pre>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">SFML- Graphics模組</h3>
+          <p>
+            Graphics模組含許多類別，本單元將介紹常用類別包含<span class="text-danger">CircleShape(圓形)、Color(顏色)、RectangleShape(方形)、Texture(材質)、Sprite(精靈-包含於場景中的二維圖像或動畫)、Text(文字)、Font(字型)</span>。
+          </p>
+          <h4 class="text-primary">SFML- Graphics模組- CircleShape(圓形)</h4>
+          <p>
+            顧名思義是用於建立圓形物件，方法或屬性包含：
+            <ul>
+              <li>
+                <span class="text-danger">CircleShape(半徑)</span>：方法用於建立一半徑值的圓形。
+              </li>
+              <pre><code>
+CircleShape ball=new CircleShape(20);
+              </code></pre>
+              <li>
+                <span class="text-danger">FillColor(填滿顏色)</span>：屬性用於設定或讀取填滿顏色，顏色為<span class="text-danger">Color</span>物件。
+              </li>
+              <pre><code>
+CircleShape ball=new CircleShape(20);
+ball.FillColor=Color.Red;
+              </code></pre>
+              <li>
+                <span class="text-danger">OutlineColor(邊框顏色)</span>：屬性用於設定或讀取邊框顏色，顏色為<span class="text-danger">Color</span>物件。
+              </li>
+              <pre><code>
+CircleShape ball=new CircleShape(20);
+ball.FillColor=Color.Red;
+ball.OutlineColor=Color.Blue;
+              </code></pre>
+              <li>
+                <span class="text-danger">Origin(中心點)</span>：屬性用於設定或讀取圓形中心點，預設為左上角(0,0)。座標點為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，x,y為圓形物件座標值。
+              </li>
+              <pre><code>
+CircleShape ball=new CircleShape(20);
+ball.FillColor=Color.Red;
+ball.OutlineColor=Color.Blue;
+ball.OutlineThickness=2;
+ball.Origin=new Vector2f(10,10); //將圓形中心由左上角移至圓形中心。必須匯入SFML System模組
+              </code></pre>
+              <li>
+                <span class="text-danger">Rotation(旋轉)</span>：屬性用於設定或讀取旋轉角度。
+              </li>
+              <li>
+                <span class="text-danger">Position(位置)</span>：屬性用於設定或讀取圓形位置，位置為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，x,y為圓形物件座標值。
+              </li>
+              <li>
+                <span class="text-danger">Scale(比例)</span>：屬性用於設定或讀取圓形比例，比例為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，用於代表圓形在x,y的比例。
+              </li>
+            </ul>
+          </p>
+          <p>
+            以下程式在960x480視窗中央顯示半徑為20、顏色為紅色圓形圖。
+          </p>
+          <pre><code>
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+
+namespace classes
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            RenderWindow window = new RenderWindow(new VideoMode(960,480), "960x480視窗",Styles.Fullscreen);
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            CircleShape ball=new CircleShape(20);
+            ball.FillColor = Color.Red;
+            ball.Position = new SFML.System.Vector2f(678, 374);
+            
+            while (window.IsOpen) //主要遊戲迴圈
+            {
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
+                {
+                    window.Close();
+                }
+                window.DispatchEvents(); //啟動所有等待中事件
+                window.Clear();
+                window.Draw(ball);
+                window.Display(); //執行現在顯示結果
+            }
+        }
+    }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：<span class="text-danger">Mouse</span>物件有<span class="text-danger">GetPosition()</span>方法可以取得滑鼠現在位置並以<span class="text-danger">Vector2i</span>物件表示他在桌面位置，使用者便須透過下列程式片段<span class="text-danger">window.MapPixelToCoords()</span>方法將滑鼠位置轉換為遊戲視窗的位置。請讓圓形物件跟著滑鼠移動，利用滑鼠移動事件、取得滑鼠位置、設定圓形圖新位置、清除前一畫面、在遊戲視窗繪製圖形。
+          </p>
+          <pre><code>
+Vector2f mousePos=window.MapPixelToCoords(Mouse.GetPosition());
+              </code></pre>         
+        </div>
+        
+
+
+
+              
+        
+      </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>  
+    
+    <!-- custom js -->
+    <script>
+      var menu_btn = document.querySelector("#menu-btn");
+      var sidebar = document.querySelector("#sidebar");
+      var container = document.querySelector(".my-container");
+      menu_btn.addEventListener("click", () => {
+        sidebar.classList.toggle("active-nav");
+        container.classList.toggle("active-cont");
+      });
+    </script>
+  </body>
+</html>

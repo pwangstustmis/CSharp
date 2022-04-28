@@ -62,7 +62,7 @@
       <div class="bg-light px-5" aria-label="breadcrumb" style="height:40px;position:fixed;width:100%;top:0;">
         <a class="btn border-0" id="menu-btn" style="position:fixed"><i class="fas fa-bars"></i></a>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">SFML- 套件安裝與測試</li>
+          <li class="breadcrumb-item">物件導向實作練習</li>
         </ol>
       </div>
       <!--End Top Nav -->
@@ -72,75 +72,21 @@
         <h3 class="text-danger p-3">內容涵蓋</h3>
         <p class="px-3" style="margin-top:-20px;">
           <ul>
-            <li>SFML- 套件安裝與測試</li>
+            <li>自訂文字類別Mystring</li>
           </ul>
         </p>
-        <div class="p-3">
-            <h3 class="text-danger">SFML- 套件安裝與測試</h3>
-            <p>
-            <a href="https://www.sfml-dev.org/" target="_blank">SMFL</a>提供簡單套件功能system、window、graphics、audio、network用於製作遊戲與多媒體應用。我們將整合SFML套件於C#物件導向程式設計。
-        </div>
-
-        <div class="p-3">
-          <h3 class="text-danger">套件安裝</h3>
-          <p>
-            請先建立C# console應用程式，開啟<span class="text-danger">工具-NuGet套件管理員-套件管理器主控台</span>後，將下列命令貼製主控台並執行套件安裝。<span class="text-danger">請注意：請各應用程式專案都必須安裝套件。</span>
-            
-          </p>
-          <pre><code>
-Install-Package SFML.Net -Version 2.5.0
-          </code></pre>
-        </div>
-        <div class="p-3">
-          <h3 class="text-danger">套件測試</h3>
-          <p>
-            請將下列程式複製並貼於專案中 <span class="text-danger">Program.cs</span> 後執行，程式會開啟 640x480 藍色視窗。
-          </p>
-          <pre><code>
-using System;
-using SFML.Graphics; //匯入SFML模組
-using SFML.Window;
-
-namespace classes
-{
-    class Program
-    {
-        const int WIDTH = 640;
-        const int HEIGHT = 480;
-        const string TITLE = "套件測試";
-        
-        static void Main(string[] args)
-        {
-            VideoMode mode = new VideoMode(WIDTH, HEIGHT); //宣告2D模式
-            RenderWindow window = new RenderWindow(mode, TITLE); //建立對應模式視窗物件
-
-            window.SetVerticalSyncEnabled(true); //避免殘影
-
-            window.Closed += (sender, args) => window.Close(); //設定視窗關閉事件
-
-            while (window.IsOpen) //主要遊戲迴圈
-            {
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
-                {
-                    window.Close();
-                }
-
-                window.DispatchEvents(); //啟動所有等待中事件
-                window.Clear(Color.Blue); //清除上一次畫面並設定背景顏色
-                window.Display(); //執行現在顯示結果
-            }
-        }
-    }
-}
-          </code></pre>
-        </div>
-        
-
-
-
-              
-        
       </div>
+        <div class="p-3">
+            <h3 class="text-danger">自訂文字類別Mystring</h3>
+            <p>
+              <ul>
+                <li>
+                  請定義自訂文字類別<span class="text-danger">Mystring</span>，包含私有屬性<span class="text-danger">text</span>，兩個建構式<span class="text-danger">無起始內容、起始特定文字內容</span>，兩個方法<span class="text-danger">Setvalue、getValue</span>用於設定與取得文字類別Mystring的text值。
+                </li>
+              </ul>             
+            </p>
+        </div>
+        
     </div>
 
     <!-- bootstrap js -->
