@@ -102,6 +102,50 @@
           <pre><code>
 Install-Package SFML.Net -Version 2.5.0
           </code></pre>
+          安裝完畢後請套用下列遊戲預設程式範本。
+          <pre><code>
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+
+namespace classes
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      //使用全螢幕遊戲視窗
+      RenderWindow window = new RenderWindow(VideoMode.DesktopMode,"遊戲標題",Styles.Fullscreen);
+      window.SetVerticalSyncEnabled(true); //避免殘影
+      window.SetFramerateLimit(60); //設定畫面更新率
+
+      while (window.IsOpen) //遊戲迴圈
+      {
+        //檢查使用者輸入
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+        {
+          window.Close();
+        }
+        window.DispatchEvents(); //啟動所有等待中事件
+
+        //更新遊戲內容
+
+
+        //清除前一畫面
+        window.Clear(); //清除上一次畫面並設定背景顏色
+
+
+        //繪製更新遊戲內容
+
+
+
+        //顯示現在畫面
+        window.Display();
+      }
+    }
+  }
+}
+          </code></pre>
+          接下來將搭配簡單射擊遊戲來介紹各個模組。
         </div>
         <div class="p-3">
             <h3 class="text-danger">SFML- Window模組</h3>
@@ -109,7 +153,7 @@ Install-Package SFML.Net -Version 2.5.0
               <a href="https://www.sfml-dev.org/documentation/2.5.1/group__window.php" target="_blank">Windows模組</a>將涵蓋<span class="text-danger">VideoMode、RenderWindow、Event、Keyboard、Mouse</span>類別。使用Window模組必須在程式開始使用<span class="text-danger">using SFML.Window;</span>匯入<span class="text-danger">Window</span>模組。
               <ul>
                 <li>
-                  <span class="text-danger">VideoMode</span>：用於建立遊戲視窗模式，透過代入視窗寬與高來建立<span class="text-danger">VideoMode</span>物件。
+                  <span class="text-danger">VideoMode</span>：用於建立遊戲視窗模式，使用者可以透過預設<span class="text-danger">VideoMode.DesktopMode</span>設定視窗模式遊戲視窗，或代入視窗寬與高來建立<span class="text-danger">VideoMode</span>遊戲視窗物件。
                   <pre><code>
 VideoMode mode=new VideoMode(800,600); //設定寬800點、高600點螢幕模式
                   </code></pre>
@@ -118,7 +162,7 @@ VideoMode mode=new VideoMode(800,600); //設定寬800點、高600點螢幕模式
                   <span class="text-danger">RenderWindow</span>：用於建立遊戲渲染視窗，透過代入視窗模式建立<span class="text-danger">RenderWindow</span>物件。除此之外RenderWindow建構式支援過載(overload)，除標題外，他也可以加入<span class="text-danger">Styles</span>物件設定，用於設定不同遊戲視窗樣式。
                   <pre><code>
 RenderWindow window=new RenderWindow(new VideoMode(800,600),"測試視窗"); //設定寬800點、高600點標題為"測試視窗"的選染視窗
-RenderWindow window=new RenderWindow(new VideoMode(800,600),"測試視窗",Styles.Fullscreen); //設定遊戲視窗為全螢幕模式
+RenderWindow window=new RenderWindow(ViewMode.DesktopMode,"測試視窗",Styles.Fullscreen); //設定遊戲視窗為全螢幕模式
                   </code></pre>
                   渲染視窗物件常用方法包含<span class="text-danger">isOpen()、Close()、setVerticalSyncEnabled()、Draw()、Clear()、Display()</span>。
                   <ul>
@@ -142,35 +186,7 @@ RenderWindow window=new RenderWindow(new VideoMode(800,600),"測試視窗",Style
                     </li>
                   </ul>
                 </li>
-              </ul>
-              下列程式以<span class="text-danger">全螢幕方式顯示960x480遊戲視窗，當使用者按下ESC鍵關閉時遊戲視窗。</span>
-              <pre><code>
-using SFML.Graphics;
-using SFML.Window;
-
-namespace classes
-{
-  class Program
-  {
-    static void Main(string[] args)
-    {
-      RenderWindow window = new RenderWindow(new VideoMode(960,480), "960x480視窗",Styles.Fullscreen);
-      window.SetVerticalSyncEnabled(true); //避免殘影
-
-      while (window.IsOpen) //主要遊戲迴圈
-      {
-        if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
-        {
-          window.Close();
-        }
-
-        window.DispatchEvents(); //啟動所有等待中事件
-        window.Display(); //執行現在顯示結果
-      }
-    }
-  }
-}
-              </code></pre>         
+              </ul>        
         </div>
         <div class="p-3">
           <h3 class="text-danger">事件</h3>
@@ -180,17 +196,15 @@ namespace classes
           <p class="text-success">
             練習：請修改上述程式，將點擊鍵盤<span class="text-danger">ESC</span>鍵關閉遊戲視窗，改為點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
           </p>
-          <p>
-            在C#中，除了向上述程式將事件偵測放在遊戲視窗迴圈中，我們也可以將事件所需執行程式附加於事件上，將上述遊戲迴圈中如下程式片段移除。
-          </p>
           <pre><code>
 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //檢查是否按下ESC鍵
-{
   window.Close();
-}
           </code></pre>
+          <p class="text-success">
+            練習：請修改上述程式並在點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
+          </p>
           <p>
-            並在遊戲迴圈前加入下列程式片段，一樣可以按下<span class="text-danger">ESC</span>鍵關閉遊戲視窗。下列程式將事件處理動作附加於事件本身。
+            在C#中，除了向上述程式將事件偵測放在遊戲視窗迴圈中，我們也可以將事件所需執行程式附加於事件上，將上述遊戲迴圈中如下程式片段移除。並在遊戲迴圈前加入下列程式片段，一樣可以按下<span class="text-danger">ESC</span>鍵關閉遊戲視窗。下列程式將事件處理動作附加於事件本身。
           </p>
           <pre><code>
 window.KeyReleased+= (sender, args) =&gt;{
@@ -199,11 +213,10 @@ window.KeyReleased+= (sender, args) =&gt;{
 };
           </code></pre>
           <p class="text-success">
-            練習：請修改上述程式並使用事件附加處理程式方式，將點擊鍵盤<span class="text-danger">ESC</span>鍵關閉遊戲視窗，改為點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
+            練習：請修改上述程式並使用事件附加處理程式方式，當點擊<span class="text-danger">滑鼠左按鈕</span>關閉遊戲視窗。
           </p>
           <p>              
-            事件附加處理程式除直接撰寫程式外，也可套用函數呼叫方式，
-            以SFML視窗<span class="text-danger">KeyPressed</span>事件為例，下列程式片段將處理程式<span class="text-danger">KeyProcess</span>附加於SFML視窗<span class="text-danger">KeyPressed</span>事件。請注意：事件處理程式會代入兩個值<span class="text-danger">object(物件)、SFML.Window.KeyEventArgs(事件類別)</span>，物件<span class="text-danger">sender</span>為產生事件的對象(在本單元為渲染視窗)，由於代入值可能為空值(null)，因此在類別定義時須加上<span class="text-danger">?</span>，處理程式<span class="text-danger">KeyProcess</span>在傳送物件不為空值時，將傳送物件<span class="text-danger">sender</span>轉換為<span class="text-danger">RenderWindow</span>物件，之後判斷按下鍵值是否為ESC鍵，如果是，關閉渲染視窗。
+            在C#中，事件處理除直接撰寫程式或附加處理程式外，也可套用函數呼叫方式進行呼叫，以SFML視窗<span class="text-danger">KeyPressed</span>事件為例，下列程式片段將處理程式<span class="text-danger">KeyProcess</span>附加於SFML視窗<span class="text-danger">KeyPressed</span>事件。請注意：事件處理程式會代入兩個值<span class="text-danger">object(物件)、SFML.Window.KeyEventArgs(事件類別)</span>，物件<span class="text-danger">sender</span>為產生事件的對象(在本單元為渲染視窗)，由於代入值可能為空值(null)，因此在類別定義時須加上<span class="text-danger">?</span>，處理程式<span class="text-danger">KeyProcess</span>在傳送物件不為空值時，將傳送物件<span class="text-danger">sender</span>轉換為<span class="text-danger">RenderWindow</span>物件，之後判斷按下鍵值是否為ESC鍵，如果是，關閉渲染視窗。
           </p>
           <pre><code>
 private static void keyProcess(object? sender,SFML.Window.KeyEventArgs evt)
@@ -254,6 +267,7 @@ namespace classes
   }
 }
           </code></pre>
+          滑鼠除點選或移動事件處理，遊戲經常需要取得滑鼠現在的位置，使用者可以利用<span class="text-danger">Mouse.GetPosition()</span>傳回滑鼠現在的位置，<span class="text-danger">Mouse.GetPosition()</span>可以代入遊戲視窗嫆於取得滑鼠在該遊戲視窗位置，位置值資料類型為<span class="text-danger">Vector2i</span>，它包含<span class="text-danger">X、Y</span>整數屬性。
         </div>
         <div class="p-3">
           <h3 class="text-danger">SFML- Graphics模組</h3>
@@ -304,13 +318,27 @@ ball.Origin=new Vector2f(10,10); //將圓形中心由左上角移至圓形中心
               <li>
                 <span class="text-danger">Scale(比例)</span>：屬性用於設定或讀取圓形比例，比例為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，用於代表圓形在x,y的比例。
               </li>
+              <li>
+                <span class="text-danger">GetGlobalBounds()</span>：屬性用於取得圓形物件在遊戲視窗範圍，因為要判斷遊戲物件是否接觸需要比較物件之間的範圍位置是否重疊，不須使用條件比較，SFML透過<span class="text-danger">GetGlobalBounds()</span>即可完成，下列程式片段使用<span class="text-danger">GetGlobalBounds()</span>的<span class="text-danger">Intersect()</span>方法，判斷兩個物件是否重疊並傳回布林值<span class="text-danger">true、false</span>。
+                <pre><code>
+CircleShape ball1=new CircleShape(20);
+ball1.FillColor=Color.Red;
+ball1.Position=new Vector2f(100,100);
+CircleShape ball12=new CircleShape(20);
+ball2.FillColor=Color.White;
+ball2.Position=new Vector2f(200,200);
+if (ball2.GetGlobalBounds().Intersect(ball1.GetGlobalBounds()))
+  ball1.FillColor=Color.Green;
+              </code></pre>
+              </li>
             </ul>
           </p>
           <p>
-            以下程式在960x480視窗中央顯示半徑為20、顏色為紅色圓形圖。
+            以下程式以全螢幕方式在視窗中央顯示半徑為50、顏色為白色圓形圖。
           </p>
           <pre><code>
-using SFML.Graphics; //匯入SFML模組
+using SFML.System; //匯入SFML模組
+using SFML.Graphics; 
 using SFML.Window;
 
 namespace classes
@@ -320,11 +348,13 @@ namespace classes
 
         static void Main(string[] args)
         {
-            RenderWindow window = new RenderWindow(new VideoMode(960,480), "960x480視窗",Styles.Fullscreen);
+            RenderWindow window = new RenderWindow(new VideoMode.DesktopMode, "960x480視窗",Styles.Fullscreen);
             window.SetVerticalSyncEnabled(true); //避免殘影
-            CircleShape ball=new CircleShape(20);
-            ball.FillColor = Color.Red;
-            ball.Position = new SFML.System.Vector2f(678, 374);
+            window.SetFramerateLimit(60); //設定畫面更新率
+
+            CircleShape ball=new CircleShape(50);
+            ball.FillColor = Color.White;
+            ball.Position = new Vector2f(window.Size.X/2,window.Size.Y/2);
             
             while (window.IsOpen) //主要遊戲迴圈
             {
@@ -333,6 +363,10 @@ namespace classes
                     window.Close();
                 }
                 window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+
+
                 window.Clear();
                 window.Draw(ball);
                 window.Display(); //執行現在顯示結果
@@ -342,11 +376,263 @@ namespace classes
 }
           </code></pre>
           <p class="text-success">
-            練習：<span class="text-danger">Mouse</span>物件有<span class="text-danger">GetPosition()</span>方法可以取得滑鼠現在位置並以<span class="text-danger">Vector2i</span>物件表示他在桌面位置，使用者便須透過下列程式片段<span class="text-danger">window.MapPixelToCoords()</span>方法將滑鼠位置轉換為遊戲視窗的位置。請讓圓形物件跟著滑鼠移動，利用滑鼠移動事件、取得滑鼠位置、設定圓形圖新位置、清除前一畫面、在遊戲視窗繪製圖形。
+            練習：修改上述程式，讓白球正中央在遊戲視窗正中央，並且一半的白球顯示在視窗最底部。(<span class="text-danger">提示：圖形物件預設中心位置在左上角</span>)
+          </p>
+          <p class="text-success">
+            練習：<span class="text-danger">Mouse</span>物件有<span class="text-danger">GetPosition()</span>方法可以取得滑鼠現在位置並以<span class="text-danger">Vector2i</span>物件表示他在桌面位置，使用者可透過下列程式片段<span class="text-danger">window.MapPixelToCoords()</span>方法將滑鼠位置轉換為遊戲視窗的位置。因為上述程式使用全螢幕模式，因此可以直接使用滑鼠位置，請修改上述程式讓白球固定在底部，但是水平位置要隨滑鼠移動。(<span class="text-danger">提示：請在更新遊戲內容部分改變白球位置</span>)
           </p>
           <pre><code>
 Vector2f mousePos=window.MapPixelToCoords(Mouse.GetPosition());
-              </code></pre>         
+          </code></pre>
+          <p class="text-success">
+          上述白色物件作為發射子彈的碉堡，接下來將說明如何設計及發射子彈，請設計大小為10、顏色為紅色、位置在白色碉堡上方、正中央位置。(使用<span class="text-danger">window.Draw()</span>時，後面繪製物件會在前一個繪製物件前面，請計算碉堡位置搭配碉堡及子彈大小)
+          </p>
+          <p class="text-success">
+            當使用者按下空白鍵，布林變數<span class="text-danger">shot</span>由<span class="text-danger">false</span>變成<span class="text-danger">true</span>，在遊戲迴圈中，當<span class="text-danger">shot</span>為<span class="text-danger">true</span>時，子彈位置每次減<span class="text-danger">10</span>，一直到子彈<span class="text-danger">Y</span>位置小於0時，將<span class="text-danger">shot</span>變為<span class="text-danger">false</span>。(沒有發射子彈時，子彈跟著碉堡走，發射子彈後，子彈<span class="text-danger">X</span>位置不變，<span class="text-danger">Y</span>位置每次減10，一直到<span class="text-danger">Y</span>值小於0為止)
+          </p>
+          <pre><code>
+using SFML.System; //匯入SFML模組
+using SFML.Graphics; 
+using SFML.Window;
+
+namespace classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用全螢幕遊戲視窗
+            RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "遊戲標題",Styles.Fullscreen);
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            window.SetFramerateLimit(60); //設定畫面更新率
+            
+
+            CircleShape _base=new CircleShape(50);
+            uint _baseY = window.Size.Y - 25;
+
+            _base.FillColor= Color.White;
+            _base.Position=new Vector2f(window.Size.X/2-25,_baseY);
+
+            CircleShape bullet = new CircleShape(10);
+            bullet.FillColor = Color.Red;
+            
+            bool shot = false;
+
+
+            while (window.IsOpen) //遊戲迴圈
+            {
+                //檢查使用者輸入
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+                    window.Close();
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) //按下空白鍵發射子彈
+                    shot = true;
+
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                    window.Close();
+
+                window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+                _base.Position=new Vector2f(Mouse.GetPosition().X,_baseY);
+                if (!shot)
+                    bullet.Position = new Vector2f(Mouse.GetPosition().X + 40, _baseY);
+                if (shot)
+                {
+                    bullet.Position = new Vector2f(bullet.Position.X, bullet.Position.Y-10);
+                    if (bullet.Position.Y &lt; 0)
+                        shot = false;
+                }
+                
+
+                //清除前一畫面
+                window.Clear(); //清除上一次畫面並設定背景顏色
+
+
+                //繪製更新遊戲內容
+                window.Draw(bullet);
+                window.Draw(_base);
+
+                //顯示現在畫面
+                window.Display();
+            }
+        }
+    }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：請在遊戲視窗上方顯示另一圓形物件，修改上述程式並使用<span class="text-danger">GetGlobalBounds()</span>，當子彈擊中目標時，該圓形物件消失。
+          </p>
+          <h5 class="text-danger">發射多個子彈</h5>  
+          <p>
+            當使用者要發射多個子彈，須將子彈以清單或陣列儲存，並動態改變其位置。藉由宣告<span class="text-danger">List&lt;CircleShape&gt;</span>並搭配清單元素新增及移除<span class="text-danger">Add、RemoveAt</span>。下列程式中變數<span class="text-danger">shootertime</span>值為10時，玩家才能發射子彈，目的避免整個螢幕都是子彈。
+          </p>
+          <pre><code>
+using SFML.System; //匯入SFML模組
+using SFML.Graphics; 
+using SFML.Window;
+
+namespace classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用全螢幕遊戲視窗
+            RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "遊戲標題",Styles.Fullscreen);
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            window.SetFramerateLimit(60); //設定畫面更新率
+            
+
+            CircleShape _base=new CircleShape(50);
+            uint _baseY = window.Size.Y - 25;
+
+            _base.FillColor= Color.White;
+            _base.Position=new Vector2f(window.Size.X/2-25,_baseY);
+
+            CircleShape bullet = new CircleShape(10);
+            bullet.FillColor = Color.Red;
+            List&lt;CircleShape&gt; bullets=new List&lt;CircleShape&gt;();
+
+            int shoottime = 0;
+
+
+            while (window.IsOpen) //遊戲迴圈
+            {
+                //檢查使用者輸入
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+                    window.Close();
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) //按下空白鍵發射子彈
+                {
+                    if (shoottime>=10)
+                    {
+                        bullet.Position= new Vector2f(Mouse.GetPosition().X + 40, _baseY);
+                        bullets.Add(bullet);
+                        shoottime = 0;
+                    }
+                }
+                if (shoottime &lt; 10)
+                    shoottime++;
+
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                    window.Close();
+
+                window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+                _base.Position=new Vector2f(Mouse.GetPosition().X,_baseY);
+                for (int i=0;i&lt;bullets.Count;i++)
+                {
+                    bullets[i].Position=new Vector2f(bullet.Position.X, bullet.Position.Y - 10);
+                    if (bullets[i].Position.Y&lt;0)
+                        bullets.RemoveAt(i);
+                }
+                
+
+                //清除前一畫面
+                window.Clear(); //清除上一次畫面並設定背景顏色
+
+                //繪製更新遊戲內容
+                for (int i = 0; i &lt; bullets.Count; i++)
+                {
+                    window.Draw(bullets[i]);
+                }
+                   
+                window.Draw(_base);
+                
+                //顯示現在畫面
+                window.Display();
+            }
+        }
+    }
+}
+          </code></pre>
+          <h4 class="text-primary">SFML- Graphics模組- RectangleShape(方形)</h4>
+          <p>
+            顧名思義是用於建立方形物件，方法或屬性包含：
+            <ul>
+              <li>
+                <span class="text-danger">RectangleShape(new Vector2f(寬,高))</span>：方法用於建立一設定寬、高值的方形。
+              </li>
+              <pre><code>
+RectangleShape r=new RectangleShape(new Vector2f(30,20);
+              </code></pre>
+              <li>
+                <span class="text-danger">FillColor(填滿顏色)</span>：屬性用於設定或讀取填滿顏色，顏色為<span class="text-danger">Color</span>物件。
+              </li>
+              <pre><code>
+RectangleShape r=new RectangleShape(new Vector2f(30,20);
+r.FillColor=Color.Red;
+              </code></pre>
+              <li>
+                <span class="text-danger">OutlineColor(邊框顏色)</span>：屬性用於設定或讀取邊框顏色，顏色為<span class="text-danger">Color</span>物件。
+              </li>
+              <pre><code>
+RectangleShape r=new RectangleShape(new Vector2f(30,20);
+r.FillColor=Color.Red;
+r.OutlineColor=Color.Blue;
+              </code></pre>
+              <li>
+                <span class="text-danger">Origin(中心點)</span>：屬性用於設定或讀取圓形中心點，預設為左上角(0,0)。座標點為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，x,y為圓形物件座標值。
+              </li>
+              <pre><code>
+RectangleShape r=new RectangleShape(new Vector2f(30,20);
+r.FillColor=Color.Red;
+r.OutlineColor=Color.Blue;
+r.OutlineThickness=2;
+r.Origin=new Vector2f(10,10); //將方形中心由左上角移至圓形中心。必須匯入SFML System模組
+              </code></pre>
+              <li>
+                <span class="text-danger">Rotation(旋轉)</span>：屬性用於設定或讀取旋轉角度。
+              </li>
+              <li>
+                <span class="text-danger">Position(位置)</span>：屬性用於設定或讀取方形位置，位置為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，x,y為方形物件座標值。
+              </li>
+              <li>
+                <span class="text-danger">Scale(比例)</span>：屬性用於設定或讀取方形比例，比例為<span class="text-danger">System</span>模組<span class="text-danger">Vector2f(x,y)</span>物件，用於代表方形在x,y的比例。
+              </li>
+              <li>
+                <span class="text-danger">GetGlobalBounds()</span>：屬性用於取得方形物件在遊戲視窗範圍，因為要判斷遊戲物件是否接觸需要比較物件之間的範圍位置是否重疊，不須使用條件比較，SFML透過<span class="text-danger">GetGlobalBounds()</span>即可完成，下列程式片段使用<span class="text-danger">GetGlobalBounds()</span>的<span class="text-danger">Intersect()</span>方法，判斷兩個物件是否重疊並傳回布林值<span class="text-danger">true、false</span>。
+                <pre><code>
+RectangleShape r1=new RectangleShape(new Vector2f(20,40));
+r1.FillColor=Color.Red;
+r1.Position=new Vector2f(100,100);
+RectangleShape r2=new RectangleShape(new Vector2f(20,40));
+r2.FillColor=Color.White;
+r2.Position=new Vector2f(200,200);
+if (r2.GetGlobalBounds().Intersect(r1.GetGlobalBounds()))
+  r1.FillColor=Color.Green;
+              </code></pre>
+              </li>
+            </ul>
+          </p>
+
+          <h4 class="text-primary">SFML- Graphics模組- Texture(材質)與Sprite(精靈)</h4>
+          <p>
+            Texture(材質)是一個圖片，Sprite(精靈)本身是一個方型區域，藉由將Texture(材質)包覆於Sprite(精靈)，讓形狀不在是單純的顏色。<span class="text-danger">Texture</span>物件來載入外部圖片檔，<span class="text-danger">外部圖片檔位置必須使用絕對位置</span>。載入之後，宣告<span class="text-danger">Sprite</span>物件使用Texture(材質)物件。下列程式片段載入在<span class="text-danger">d</span>磁碟機，目錄<span class="text-danger">\\games\\Spiders\\Spiders\\assets\\</span>中<span class="text-danger">spider.png</span>圖片檔，路徑位置使用<span class="text-danger">\\</span>因為<span class="text-danger">反斜線(\)</span>在C#中用於表示控制符號，因此要在路徑字串顯示<span class="text-danger">反斜線(\)</span>必須使用兩個<span class="text-danger">\\</span>
+          </p>
+          <pre><code>
+Texture spiderTexture = new SoundBuffer("d:\\games\\Spiders\\Spiders\\assets\\spider.png");
+Sprite spider=new Sprite(spiderTexture);
+          </code></pre>
+          <p class="text-success">
+            練習：請下載任意圖片，並建立Sprite(精靈)使用下在圖片作為Texture(材質)。
+          </p>
+          <p class="text-success">
+            練習：請下載任意圖片，並建立CircleShape(圓形)使用下在圖片作為Texture(材質)。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">SFML- Audio模組</h3>
+          <p>
+            本單元僅介紹如何載入聲音與播放聲音，要撥放聲音檔首先須宣告<span class="text-danger">SoundBuffer</span>物件來載入外部聲音檔，<span class="text-danger">外部聲音檔位置必須使用絕對位置</span>。載入之後，宣告<span class="text-danger">Sound</span>物件來控制聲音，並使用<span class="text-danger">Play()、Stop()</span>等方法來控制聲音，下列程式片段載入在<span class="text-danger">d</span>磁碟機，目錄<span class="text-danger">\\games\\Spiders\\Spiders\\assets\\</span>中<span class="text-danger">gun.wav</span>聲音檔，路徑位置使用<span class="text-danger">\\</span>因為<span class="text-danger">反斜線(\)</span>在C#中用於表示控制符號，因此要在路徑字串顯示<span class="text-danger">反斜線(\)</span>必須使用兩個<span class="text-danger">\\</span>。
+          </p>
+          <pre><code>
+SoundBuffer gunBuffer = new SoundBuffer("d:\\games\\Spiders\\Spiders\\assets\\gun.wav");
+Sound gun=new Sound(gunBuffer);
+          </code></pre>
+          <p class="text-success">
+            練習：請下載聲音檔(<a href="imgs/sfml-topic1/gun.wav">gun.wav</a>)，並在按下空白鍵發射子彈使用<span class="text-danger">Play()</span>撥放聲音。
+          </p>
         </div>
         
 
