@@ -376,16 +376,31 @@ namespace classes
 }
           </code></pre>
           <p class="text-success">
-            練習：修改上述程式，讓白球正中央在遊戲視窗正中央，並且一半的白球顯示在視窗最底部。(<span class="text-danger">提示：圖形物件預設中心位置在左上角</span>)
+            練習：修改上述程式，讓白球正中央在遊戲視窗正中央，並且一半的白球顯示在視窗最底部(如下圖)。(<span class="text-danger">提示：圖形物件預設中心位置在左上角</span>)
+          </p>
+          <p>
+            <img src="imgs/sfml-topic1/ball_bottom_center.png"/>
           </p>
           <p class="text-success">
-            練習：<span class="text-danger">Mouse</span>物件有<span class="text-danger">GetPosition()</span>方法可以取得滑鼠現在位置並以<span class="text-danger">Vector2i</span>物件表示他在桌面位置，使用者可透過下列程式片段<span class="text-danger">window.MapPixelToCoords()</span>方法將滑鼠位置轉換為遊戲視窗的位置。因為上述程式使用全螢幕模式，因此可以直接使用滑鼠位置，請修改上述程式讓白球固定在底部，但是水平位置要隨滑鼠移動。(<span class="text-danger">提示：請在更新遊戲內容部分改變白球位置</span>)
+            練習：<span class="text-danger">Mouse</span>物件有<span class="text-danger">GetPosition()</span>方法可以取得滑鼠現在位置並以<span class="text-danger">Vector2i</span>物件表示他在桌面位置，使用者可透過下列程式片段<span class="text-danger">window.MapPixelToCoords()</span>方法將滑鼠位置轉換為遊戲視窗的位置。因為上述程式使用全螢幕模式，因此可以直接使用滑鼠位置，請修改上述程式讓白球固定在底部，但是水平位置要隨滑鼠移動。(<span class="text-danger">提示：請在更新遊戲內容部分改變白球位置</span>如下影片)
+          </p>
+          <p>
+            <video width="320" height="240" controls>
+              <source src="imgs/sfml-topic1/mouse_move_base.mp4" type="video/mp4">
+              你的瀏覽器不支援影片播放
+            </video>
           </p>
           <pre><code>
 Vector2f mousePos=window.MapPixelToCoords(Mouse.GetPosition());
           </code></pre>
           <p class="text-success">
-          上述白色物件作為發射子彈的碉堡，接下來將說明如何設計及發射子彈，請設計大小為10、顏色為紅色、位置在白色碉堡上方、正中央位置。(使用<span class="text-danger">window.Draw()</span>時，後面繪製物件會在前一個繪製物件前面，請計算碉堡位置搭配碉堡及子彈大小)
+          上述白色物件作為發射子彈的碉堡，接下來將說明如何設計及發射子彈，請設計大小為10、顏色為紅色、位置在白色碉堡上方、正中央位置。(使用<span class="text-danger">window.Draw()</span>時，後面繪製物件會在前一個繪製物件前面，請計算碉堡位置搭配碉堡及子彈大小)，如下影片：
+          </p>
+          <p>
+            <video width="320" height="240" controls>
+              <source src="imgs/sfml-topic1/base_bullet.mp4" type="video/mp4">
+              你的瀏覽器不支援影片播放
+            </video>
           </p>
           <p class="text-success">
             當使用者按下空白鍵，布林變數<span class="text-danger">shot</span>由<span class="text-danger">false</span>變成<span class="text-danger">true</span>，在遊戲迴圈中，當<span class="text-danger">shot</span>為<span class="text-danger">true</span>時，子彈位置每次減<span class="text-danger">10</span>，一直到子彈<span class="text-danger">Y</span>位置小於0時，將<span class="text-danger">shot</span>變為<span class="text-danger">false</span>。(沒有發射子彈時，子彈跟著碉堡走，發射子彈後，子彈<span class="text-danger">X</span>位置不變，<span class="text-danger">Y</span>位置每次減10，一直到<span class="text-danger">Y</span>值小於0為止)
