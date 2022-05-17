@@ -508,7 +508,7 @@ namespace classes
             bullet.FillColor = Color.Red;
             List&lt;CircleShape&gt; bullets=new List&lt;CircleShape&gt;();
 
-            int shoottime = 0;
+            int shoottime = 0; //用於設定子彈重置時間
 
 
             while (window.IsOpen) //遊戲迴圈
@@ -518,7 +518,7 @@ namespace classes
                     window.Close();
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) //按下空白鍵發射子彈
                 {
-                    if (shoottime>=10)
+                    if (shoottime>=10) //子彈重置當shoottime到10
                     {
                         bullet.Position= new Vector2f(Mouse.GetPosition().X + 40, _baseY);
                         bullets.Add(bullet);
@@ -542,7 +542,6 @@ namespace classes
                         bullets.RemoveAt(i);
                 }
                 
-
                 //清除前一畫面
                 window.Clear(); //清除上一次畫面並設定背景顏色
 
@@ -619,7 +618,19 @@ if (r2.GetGlobalBounds().Intersect(r1.GetGlobalBounds()))
               </code></pre>
               </li>
             </ul>
+          </p>         
+          <h4 class="text-primary">SFML- Graphics模組- Font(字型)與Text(文字)</h4>
+          <p>
+            SFML利用<span class="text-danger">Text</span>物件來顯示文字，<span class="text-danger">Text</span>物件一定要設定外部字型，否則無法顯示。請至<a href="https://fonts.google.com/" target="_blank">Google Fonts</a>下載一<span class="text-danger">ttf</span>字型檔，之後透過<span class="text-danger">Font</span>物件載入字型，請注意：<span class="text-danger">外部圖片檔位置必須使用絕對位置</span>，載入後，設定<span class="text-danger">Text</span>物件<span class="text-danger">Font、CharacterSize、Position、FillColor</span>來設定文字字型、大小、位置及顏色。下面程式片段設定字型位置在<span class="text-danger">D磁碟機中game檔案夾中Clocktest檔案夾中Tapestry-Regular.ttf</span>，之後產生文字物件，並設定<span class="text-danger">字型、大小25點、位置(10,10)、顏色為紅色</span>。
           </p>
+          <pre><code>
+Font font = new Font("D:\\games\\Clocktest\\Clocktest\\Tapestry-Regular.ttf");
+Text text=new Text();
+text.Font = font;
+text.CharacterSize = 25;
+text.Position = new Vector2f(10, 10);
+text.FillColor= new Color(255,0,0);
+          </code></pre>
 
           <h4 class="text-primary">SFML- Graphics模組- Texture(材質)與Sprite(精靈)</h4>
           <p>
@@ -634,6 +645,125 @@ Sprite spider=new Sprite(spiderTexture);
           </p>
           <p class="text-success">
             練習：請下載任意圖片，並建立CircleShape(圓形)使用下在圖片作為Texture(材質)。
+          </p>
+        </div>
+        <div class="p-3">
+          <h3 class="text-danger">SFML- Graphics模組- Clock時間</h3>
+          <p>
+            以下列程式為例，當進行動畫時，動畫速度會取決於設備的好或壞，如果是高階機器，子彈會跑很快，如果是低階的機器，子彈就會跑的比較慢，為了讓不同的機器有相同的時間感受，程式將使用時間物件-<span class="text-danger">Clock</span>。
+          </p>
+          <pre><code>
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+using SFML.System;
+
+namespace classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用全螢幕遊戲視窗
+            RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "遊戲標題", Styles.Fullscreen);
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            window.SetFramerateLimit(60); //設定畫面更新率
+
+            RectangleShape bullet = new RectangleShape(new Vector2f(3, 20));
+            bullet.FillColor = new Color(106,232,136);
+            bullet.Position= new Vector2f(window.Size.X/2+5, window.Size.Y-30);            
+
+            while (window.IsOpen) //遊戲迴圈
+            {
+                //檢查使用者輸入
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+                {
+                    window.Close();
+                }
+                window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+                if (bullet.Position.Y > 0)
+                    bullet.Position =new Vector2f(window.Size.X / 2 + 5, bullet.Position.Y- 10);
+
+                //清除前一畫面
+                window.Clear(); //清除上一次畫面並設定背景顏色
+
+                //繪製更新遊戲內容
+                if (bullet.Position.Y>0)
+                    window.Draw(bullet);
+
+                //顯示現在畫面
+                window.Display();
+            }
+        }
+    }
+}
+          </code></pre>
+          <p>
+            時間物件利用<span class="text-danger">時間物件.Restart()</span>方法取得每個動畫間的時間差，時間差以<span class="text-danger">clock.Restart().AsSeconds()</span>(秒)、<span class="text-danger">clock.Restart().AsMicroseconds()</span>(百分之一秒)或<span class="text-danger">clock.Restart().AsMilliseconds()</span>(千分之一秒)為單位，取得動畫間的時間差，再由設計者預定的動畫速度來決定移動的距離。以下列程式為例，設定動畫速度<span class="text-danger">speed每秒500點</span>。
+          </p>
+          <pre><code>
+aa
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+using SFML.System;
+
+namespace classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用全螢幕遊戲視窗
+            RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "遊戲標題", Styles.Fullscreen);
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            window.SetFramerateLimit(60); //設定畫面更新率
+
+            RectangleShape bullet = new RectangleShape(new Vector2f(3, 20));
+            bullet.FillColor = new Color(106,232,136);
+            bullet.Position= new Vector2f(window.Size.X/2+5, window.Size.Y-30);
+
+            const float speed = 500; //假設每秒跑500點
+            Clock clock=new Clock(); //建立時間物件
+            float deltatime; //設定時間差變數
+            
+            while (window.IsOpen) //遊戲迴圈
+            {
+                //檢查使用者輸入
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+                {
+                    window.Close();
+                }
+                window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+                deltatime = clock.Restart().AsSeconds(); //取得每個動畫的時間差並以秒計算
+
+                if (bullet.Position.Y > 0)
+                    bullet.Position =new Vector2f(window.Size.X / 2 + 5, bullet.Position.Y- deltatime * speed); //將Y座標依照每秒速度改變
+
+                //清除前一畫面
+                window.Clear(); //清除上一次畫面並設定背景顏色
+
+                //繪製更新遊戲內容
+                if (bullet.Position.Y>0)
+                    window.Draw(bullet);
+
+                //顯示現在畫面
+                window.Display();
+            }
+        }
+    }
+}
+          </code></pre>
+          <p class="text-success">
+            練習：請設計兩個子彈，一個為模擬速度500點/秒，另外一個為250點/秒，請同時顯示這兩個子彈動畫如下影片。
+          </p>
+          <p>
+            <video width="320" height="240" controls>
+              <source src="imgs/sfml-topic1/clock_test.mp4" type="video/mp4">
+              你的瀏覽器不支援影片播放
+            </video>
           </p>
         </div>
         <div class="p-3">
