@@ -779,7 +779,154 @@ Sound gun=new Sound(gunBuffer);
             練習：請下載聲音檔(<a href="imgs/sfml-topic1/gun.wav">gun.wav</a>)，並在按下空白鍵發射子彈使用<span class="text-danger">Play()</span>撥放聲音。
           </p>
         </div>
-        
+        <div class="p-3">
+          <h3 class="text-danger">實例- Space invaders(太空侵略者)</h3>
+          <p>
+            Space invaders為一款射擊遊戲，實例為簡化模擬。外部資源如下：<a href="imgs/sfml-topic1/background.png" target="_blank">background.png(背景圖)</a>、<a href="imgs/sfml-topic1/player.png" target="_blank">player.png(玩家)</a>、<a href="imgs/sfml-topic1/invader1.png" target="_blank">invader1.png(侵略者)</a>、<a href="imgs/sfml-topic1/lasergun.wav" target="_blank">lasergun.wav(武器聲音)</a>。
+          </p>
+          <p>
+            撰寫步驟如下：
+            <ol>
+              <li>
+                建立專案、載入SFML程式庫、設定如下程式範本：
+                <pre><code>
+Install-Package SFML.Net -Version 2.5.0
+          </code></pre>
+          安裝完畢後請套用下列遊戲預設程式範本。
+          <pre><code>
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+using SFML.System;
+using SFML.Audio;
+
+namespace classes
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      //使用全螢幕遊戲視窗
+      RenderWindow window = new RenderWindow(VideoMode.DesktopMode,"遊戲標題",Styles.Fullscreen);
+      window.SetVerticalSyncEnabled(true); //避免殘影
+      window.SetFramerateLimit(60); //設定畫面更新率
+
+      while (window.IsOpen) //遊戲迴圈
+      {
+        //檢查使用者輸入
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+        {
+          window.Close();
+        }
+        window.DispatchEvents(); //啟動所有等待中事件
+
+        //更新遊戲內容
+
+        //清除前一畫面
+        window.Clear(); //清除上一次畫面並設定背景顏色
+
+        //繪製更新遊戲內容
+
+        //顯示現在畫面
+        window.Display();
+      }
+    }
+  }
+}
+          </code></pre>
+              </li>
+              <li>
+                <p>
+                  加入背景：使用<span class="text-danger">Texture(材質)</span>與<span class="text-danger">RectangleShape(矩形)</span>加入遊戲背景。請注意：<span class="text-danger">請修改下列程式片段讓背景圖的大小與遊戲視窗大小相同</span>。
+                </p>
+                <pre><code>
+//載入背景圖
+Texture backgroundTexture = new Texture("D:\\games\\Spaceinvader\\Spaceinvader\\assets\\background.png");
+RectangleShape background = new RectangleShape();
+background.Texture= backgroundTexture;
+                </code></pre>
+              </li>
+              <li>
+                <p>
+                  加入玩家：使用<span class="text-danger">Texture(材質)</span>與<span class="text-danger">Sprite(精靈)</span>加入玩家。請注意：<span class="text-danger">請修改下列程式片段讓玩家在螢幕正中央、並具底部10點</span>。
+                </p>
+                <pre><code>
+//載入玩家圖
+Texture playerTexture= new Texture("D:\\games\\Spaceinvader\\Spaceinvader\\assets\\player.png");
+Sprite player=new Sprite(playerTexture);
+                </code></pre>
+              </li>
+              <li>
+                <p>
+                  加入玩家：使用<span class="text-danger">Texture(材質)</span>與<span class="text-danger">Sprite(精靈)</span>加入玩家。請注意：<span class="text-danger">請修改下列程式片段讓玩家在螢幕正中央、並具底部10點</span>。
+                </p>
+                <pre><code>
+//載入玩家圖
+Texture playerTexture= new Texture("D:\\games\\Spaceinvader\\Spaceinvader\\assets\\player.png");
+Sprite player=new Sprite(playerTexture);
+                </code></pre>
+              </li>
+              <li>
+                <p>
+                  加入玩家控制：使用<span class="text-danger">Keyboard</span>物件偵測玩家是否按下<span class="text-danger">Left(左)、Right(右)</span>鍵，如果按下左鍵，玩家向左移動預設距離，如果按下右鍵，玩家向右移動預設距離，請注意：<span class="text-danger">玩家大小 50 x 40</span>，左右移動時玩家不可超過遊戲視窗左右兩邊，同時按下<span class="text-danger">Space(空間棒)</span>播發設聲音。
+                </p>
+                <pre><code>
+//載入玩家圖
+Texture playerTexture= new Texture("D:\\games\\Spaceinvader\\Spaceinvader\\assets\\player.png");
+Sprite player=new Sprite(playerTexture);
+                </code></pre>
+                <p>
+                  <video width="320" height="240" controls>
+                    <source src="imgs/sfml-topic1/spaceinvader_1.mp4" type="video/mp4">
+                    你的瀏覽器不支援影片播放
+                  </video>
+                </p>
+              </li>
+              <li>
+                <p>
+                  加入子彈：子彈使用<span class="text-danger">RectangleShape</span>舉行物件，大小<span class="text-danger">3x10</span>，顏色<span class="text-danger">Color(88,230,169)</span>，使用者按下<span class="text-danger">Space</span>(空間棒)發射子彈，設定子彈<span class="text-danger">Position</span>(位置)為<span class="text-danger">玩家X位置加23,玩家Y位置-4</span>，玩家按下<span class="text-danger">Space</span>時，將子彈加入<span class="text-danger">List&lt;RectangleShape&gt;</span>新增(<span class="text-danger">Add</span>)至清單，並在更新部分改變子彈位置，如果子彈位置超過遊戲視窗頂部，則移除(<span class="text-danger">RemoveAt</span>)該子彈，之後在繪製部分將子彈畫出。
+                </p>
+                <pre><code>
+//定義子彈清單並定義子彈延遲
+List<RectangleShape> bullets=new List<RectangleShape>();
+int shootertime = 0;
+
+//按下空間棒加入子彈
+if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) //按下ESC鍵關閉遊戲
+{
+    if (shootertime>=10)
+    {
+        bullet.Position = new Vector2f(player.Position.X + 23, player.Position.Y);
+        bullets.Add(bullet);
+        shootertime = 0;
+    }
+    lasergun.Play();
+}
+
+//更新子彈位置
+if (shootertime &lt; 10)
+  shootertime++;
+for (int i = 0; i &lt; bullets.Count; i++)
+{
+  bullets[i].Position = new Vector2f(bullets[i].Position.X, bullets[i].Position.Y - 4);
+  if (bullets[i].Position.Y &lt;= 0)
+    bullets.RemoveAt(i);
+}
+
+//顯示子彈
+for (int i=0;i&lt;bullets.Count;i++)
+{
+    window.Draw(bullets[i]);
+}
+                </code></pre>
+                <p>
+                  <video width="320" height="240" controls>
+                    <source src="imgs/sfml-topic1/spaceinvader_2.mp4" type="video/mp4">
+                    你的瀏覽器不支援影片播放
+                  </video>
+                </p>
+              </li>
+            </ol>
+          </p>
 
 
 
