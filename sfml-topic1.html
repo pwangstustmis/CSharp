@@ -782,7 +782,7 @@ Sound gun=new Sound(gunBuffer);
         <div class="p-3">
           <h3 class="text-danger">實例- Space invaders(太空侵略者)</h3>
           <p>
-            Space invaders為一款射擊遊戲，實例為簡化模擬。外部資源如下：<a href="imgs/sfml-topic1/background.png" target="_blank">background.png(背景圖)</a>、<a href="imgs/sfml-topic1/player.png" target="_blank">player.png(玩家)</a>、<a href="imgs/sfml-topic1/invader1.png" target="_blank">invader1.png(侵略者)</a>、<a href="imgs/sfml-topic1/lasergun.wav" target="_blank">lasergun.wav(武器聲音)</a>。
+            Space invaders為一款射擊遊戲，實例為簡化模擬。外部資源如下：<a href="imgs/sfml-topic1/background.png" target="_blank">background.png(背景圖)</a>、<a href="imgs/sfml-topic1/player.png" target="_blank">player.png(玩家)</a>、<a href="imgs/sfml-topic1/invader1.png" target="_blank">invader1.png(侵略者)</a>、<a href="imgs/sfml-topic1/enemysprite.png" target="_blank">enemysprite.png(兩個侵略者圖片檔)</a>、<a href="imgs/sfml-topic1/lasergun.wav" target="_blank">lasergun.wav(武器聲音)</a>。
           </p>
           <p>
             撰寫步驟如下：
@@ -925,14 +925,157 @@ for (int i=0;i&lt;bullets.Count;i++)
                   </video>
                 </p>
               </li>
+              <li>
+              <p>
+                加入侵略者：單元測試將使用一個侵略者開始，侵略者圖片包含<a href="imgs/sfml-topic1/invader1.png" target="_blank">invader1.png(侵略者)</a>與<a href="imgs/sfml-topic1/enemysprite.png" target="_blank">enemysprite.png(兩個侵略者圖片檔)</a>。<span class="text-danger">enemysprite.png</span>稱為<span class="text-danger">sprite sheet</span>，它包含大小相同但不同內容的圖片，使用者可藉由改變圖片位置來顯示不同圖片，<span class="text-danger">enemysprite.png</span>大小為 68 x 40，當設計者載入<span class="text-danger">enemysprite.png</span>材質後，透過<span class="text-danger">Sprite</span>命令中設定材質顯示的左上角、寬與高，便能動態顯示<span class="text-danger">sprite sheet</span>。下列程式片段交互顯示<span class="text-danger">enemysprite.png</span>。
+              </p>
+              <div>
+                invader1.png <img src="imgs/sfml-topic1/invader1.png"> enemysprite.png <img src="imgs/sfml-topic1/enemysprite.png">
+              </div>
+              <pre><code>
+//載入enemysprite材質並取得每張圖片寬度與高度
+Texture spriteTexture = new Texture("D:\\games\\spritesheet\\spritesheet\\enemysprite.png");
+int baseSizeX = (int)spriteTexture.Size.X / 2;
+int baseSizeY = (int)spriteTexture.Size.Y;
+//設定圖片切換變數spriteToggle並設定一開始圖片位置在第一張
+int spriteToggle = 0;
+Sprite sprite=new Sprite(spriteTexture,new IntRect(0 , 0, baseSizeX, baseSizeY));
+//設定enemy位置及延遲顯示變數
+sprite.Position = new Vector2f(200, 200);
+int scount = 0;
+//設定延遲變數值
+if (scount &lt; 20)
+  scount++;
+//根據變數spriteToggle值交互顯示enemysprite的圖片，物件InRect設定為(左,上,寬,高)
+if (scount >= 20) {                  
+  sprite.TextureRect = new IntRect(0 + spriteToggle * baseSizeX, 0, baseSizeX, baseSizeY);
+  spriteToggle = ++spriteToggle % 2;
+  scount = 0;
+}
+              </code></pre>
+              <p>
+                <video width="320" height="240" controls>
+                  <source src="imgs/sfml-topic1/enemyspritesheet.mp4" type="video/mp4">
+                  你的瀏覽器不支援影片播放
+                </video>
+              </p>
+              <p>
+                加入侵略者後，我們要讓侵略者<span class="text-danger">由左向右、由上到下移動，以螢幕 600x600為例，遊戲邊界最左邊位置設為100、最右邊設為500，開始高度100，結束高度400、每次水平移動20點、接觸左右邊界向下移動30點</span>。
+              </p>
+              <p>
+                <video width="320" height="240" controls>
+                  <source src="imgs/sfml-topic1/enemymove.mp4" type="video/mp4">
+                  你的瀏覽器不支援影片播放
+                </video>
+              </p>
+              <pre><code>
+using SFML.Graphics; //匯入SFML模組
+using SFML.Window;
+using SFML.System;
+
+namespace classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用全螢幕遊戲視窗
+            RenderWindow window = new RenderWindow(new VideoMode(600,600), "遊戲標題");
+            window.SetVerticalSyncEnabled(true); //避免殘影
+            window.SetFramerateLimit(60); //設定畫面更新率
+
+            //載入enemysprite材質並取得每張圖片寬度與高度
+            Texture spriteTexture = new Texture("D:\\games\\spritesheet\\spritesheet\\enemysprite.png");
+            int baseSizeX = (int)spriteTexture.Size.X / 2;
+            int baseSizeY = (int)spriteTexture.Size.Y;
+
+            //設定圖片切換變數spriteToggle並設定一開始圖片位置在第一張
+            int spriteToggle = 0;
+            Sprite sprite=new Sprite(spriteTexture,new IntRect(0 , 0, baseSizeX, baseSizeY));
+
+            //設定enemy位置及延遲顯示變數
+            sprite.Position = new Vector2f(80, 100);
+            int scount = 0;
+
+            //設定布林方向變數 direction, false由左向右, true由右向左
+            bool direction = false;
+
+            while (window.IsOpen) //遊戲迴圈
+            {
+                //檢查使用者輸入
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) //按下ESC鍵關閉遊戲
+                {
+                    window.Close();
+                }
+                window.DispatchEvents(); //啟動所有等待中事件
+
+                //更新遊戲內容
+                //設定延遲變數值
+                if (scount &lt; 20)
+                    scount++;
+                //根據變數spriteToggle值交互顯示enemysprite的圖片，物件InRect設定為(左,上,寬,高)
+                if (scount >= 20) {
+                    if (!direction)
+                    {
+                       
+                        if ((int)sprite.Position.X&gt;=500-baseSizeX) {
+                            direction = !direction;
+                            sprite.Position = new Vector2f(sprite.Position.X -20, sprite.Position.Y+30);
+                        }
+                        sprite.Position = new Vector2f(sprite.Position.X + 20, sprite.Position.Y);
+                    } else
+                    {
+                        
+                        if ((int)sprite.Position.X &lt;= 100)
+                        {
+                            direction = !direction;
+                            sprite.Position = new Vector2f(sprite.Position.X + 20, sprite.Position.Y + 30);
+                        }
+                        sprite.Position = new Vector2f(sprite.Position.X - 20, sprite.Position.Y);
+                    }
+                    sprite.TextureRect = new IntRect(0 + spriteToggle * baseSizeX, 0, baseSizeX, baseSizeY);
+                    spriteToggle = ++spriteToggle % 2;
+                    scount = 0;
+                }
+
+                //清除前一畫面
+                window.Clear(new Color(0,200,0)); //清除上一次畫面並設定背景顏色
+
+
+                //繪製更新遊戲內容
+                if ((int)sprite.Position.Y+baseSizeY&gt;=400)
+                    window.Draw(sprite);
+
+                //顯示現在畫面
+                window.Display();
+            }
+        }
+    }
+}
+              </code></pre>
+              <p>
+                能加入一個侵略者，接下來我們要利用清單加入多個侵略者，設定<span class="text-danger">4列侵略者、每一列8個、每個侵略者左右空15點、上下空20點、從螢幕(100,100)位置開始</span>，結果如下圖：
+              </p>
+              <p>
+                <img src="imgs/sfml-topic1/enemies_screen.png">
+              </p>
+              <p>
+                設定多個侵略者移動如下影片：
+              </p>
+              <p>
+                <video width="320" height="240" controls>
+                  <source src="imgs/sfml-topic1/enemies_move.mp4" type="video/mp4">
+                  你的瀏覽器不支援影片播放
+                </video>
+              </p>
+            </li>
             </ol>
-          </p>
-
-
-
-              
-        
+          </p>      
       </div>
+
+
+
+      
     </div>
 
     <!-- bootstrap js -->
