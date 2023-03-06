@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>C#簡介</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="scripts/myscript.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" >
+        <div class="sidenav">
+            <!--每個單元選項及選項說明-->
+            <div class="unititem">
+                <div><a href="#slide-1" class="itembutton" onclick="nextSlide(1);">1</a></div>
+                <div>C# 語法與變數</div>                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-2" class="itembutton" onclick="nextSlide(2);">2</a></div>
+                <div>C# 數字與布林資料類型</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-3" class="itembutton" onclick="nextSlide(3);">3</a></div>
+                <div>C# 文字資料類型</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-4" class="itembutton" onclick="nextSlide(4);">4</a></div>
+                <div>C# 陣列資料類型</div>                                                             
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-5" class="itembutton" onclick="nextSlide(5);">5</a></div>
+                <div>C# 清單資料類型</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-6" class="itembutton" onclick="nextSlide(6);">6</a></div>
+                <div>C# 字典資料類型</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-7" class="itembutton" onclick="nextSlide(7);">7</a></div>
+                <div>C# 運算子</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-8" class="itembutton" onclick="nextSlide(8);">8</a></div>
+                <div>C# 條件敘述</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-9" class="itembutton" onclick="nextSlide(9);">9</a></div>
+                <div>C# 迴圈敘述</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-10" class="itembutton" onclick="nextSlide(10);">10</a></div>
+                <div>C# 函數</div>                                                               
+            </div>
+        </div>
+        <div class="main">
+            <div class="slides">
+                <!--單元內容-->
+                <div class="slide" id="slide-1">
+                    <div class="unittitle">準備工作</div>
+                    <p>請建立或開啟 C# 主控台應用專案並開啟 Program.cs</p>
+                    <div class="unittitle">C#語法與變數</div>
+                    <p>不同於Python，C#程式每行命令必須以 <em>;</em> 結尾，同時程式區塊必須包含於 <em>{ }</em> 之間。C#變數名稱同Python，變數名稱可由 <em>英文字或底線符號(_)</em> 開始，同時 <em>變數名稱大小寫英文字為不同的變數</em>。程式註解單行使用 <em>//</em>，多行使用 <em>/* */</em> 將註解範圍框起來。因為C#為強型態程式語言，變數設定方式如下</p>
+                    <div class="codeblock">
+//變數宣告範例
+int a; //定義整數變數 a<br/>
+int b,c; //定義兩個整數變數 b, c<br/>
+int d=100; //定義整數變數d必設定起始值為 100
+                    </div>
+                    <div class="unittitle">C#主控台輸入/輸出</div>
+                    <p>
+                    主控台輸入輸出使用<em> Console </em>物件。
+                    <ul>
+                        <li>
+                            <em>Console.Read()</em> 從鍵盤讀入一個鍵並將讀入鍵盤值以整數(int)資料類型值傳回。
+                        </li>
+                        <li>
+                            <em>Console.ReadLine()</em> 從鍵盤讀入一串鍵值並以字串(string)資料類型值傳回。
+                        </li>
+                        <li>
+                            <em>Console.Write(輸出值)</em> 或 <em>Console.Write(輸出格式,輸出值) </em>將輸出值顯示於主控台，<em>Console.Write()</em> 輸出不跳行，使用者可以搭配控制字元<em> \n </em>輸出跳行。格式輸出設定為<em> {輸出變數位置,輸出長度:格式設定} </em>，<em>輸出變數值位置</em>為整數，代表第幾個輸出變數，第一個變數位置值為0，依序而下。<em>輸出長度</em>可為正負數，代表輸出長度，正值靠右對齊，負值靠左對齊。格式設定<em> c </em>代表貨幣、<em> d </em>代表整數，<em>f </em>代表具小數數字。
+                        </li>
+                        <li>
+                            <em>Console.WriteLine()</em>設定同<em>Console.Write()</em>，不同是<em>Console.WriteLine()</em>於輸出後自動跳行。
+                        </li>
+                    </ul>
+                    </p>
+                    <div class="codeblock">
+//輸出範例
+Console.WriteLine("變數1={0},變數2={1}", 1,2); //輸出變數1,變數2<br/>
+Console.WriteLine("變數2={1},變數2={0}", 1, 2); //輸出變數2,變數1<br/>
+Console.WriteLine("變數1={0,10}", 1); //輸出長度為10 變數1<br/>
+Console.WriteLine("變數1={0:d10}", 1); ////輸出10位數整數變數1<br/>
+Console.WriteLine("變數1={0:f2}", 1.2345); //輸出兩位小數變數1
+                    </div>
+                </div>
+                <div class="slide" id="slide-2">
+                    <div class="unittitle">C# 數字與布林資料類型</div>
+                    <p>當需要進行數學運算時，變數需設為數字資料類型，數字資料類型包含沒有小數的 整數類型 與 有小數的 浮點數資料類型。</p>
+                    <p>整數資料類型如下</p>
+                    <ul>
+                        <li>sbyte : -128 到 127</li>
+                        <li>byte : 0 至 255</li>
+                        <li>short : -32,768 至 32,767</li>
+                        <li>ushort : 0 到 65,535</li>
+                        <li>int : -2,147,483,648 至 2,147,483,647</li>
+                        <li>uint : 0 到 4,294,967,295</li>
+                        <li>long : -9,223,372,036,854,775,808 至 9,223,372,036,854,775,807</li>
+                        <li>ulong : 0 到 18,446,744,073,709,551,615</li>
+                    </ul>
+                    <p>常用整數資料類型為 <em>int</em> ，整數資料類型開始為 <em>u</em> 代表沒有負數整數資料類型，整數變數可利用 <em>toString()</em> 方法將整數值轉換為文字值。數字類型可使用 <em>Parse</em> 方法將文字性數字轉換為數字性數字。</p>
+                    <p>浮點數資料類型如下</p>
+                    <ul>
+                        <li>float : 具小數，設定值時最後必須加上英文字 <em>f</em>，代表是浮點數。</li>
+                        <li>double : 具小數有，有8位元組大小。</li>
+                    </ul>
+                    <p>布林資料類型包含 <em>true、false</em></p>                            
+                    <div class="codeblock">
+//變數宣告範例<br/>
+float x=1.1f; //定義單精準度浮點變數 x<br/>
+double y=2.3; //定義單精準度浮點變數 y<br/>
+bool z=true; //定義布林變數 z
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行一個數字，讀入兩個數字並輸出兩個數字加、減、乘、除的結果。<br/>
+2. 如第一題輸出格式請使用<em> 數1 + 數2 = 結果</em><br/>
+3. 請使用Console.ReadLine()方法，每行一個數字，讀入4位同學成績，每位同學成績包含國文、英文、數學，總共需讀入12行資料，請使用<em>整數變數</em>儲存讀入資料，計算並輸出每位同學平均成績至小數第二位。
+                    </div>
+                </div>
+                <div class="slide" id="slide-3">
+                    <div class="unittitle">C# 文字資料類型</div>
+                    <p>C#文字類型包含 <em>字元類型(char) 與 字串類型(string)</em>，C#字元值必須置於 <em>單引號</em> 中，字串值必須置於 <em>雙引號</em> 中，字串合併可使用 <em>+</em> 運算子，請注意：<em>字串為字元陣列所組成</em>。</p>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請利用Console.ReadLine()方法讀入一個字串並印出輸入字串<br/>
+2. 使用Count與Length印出讀入字串長度<br/>
+3. 請利用Console.ReadLine()讀入一個字串並將字串轉為大寫印出<br/>
+4. 請利用Console.ReadLine()讀入一個逗點隔開字串並利用Split方法傳回 字串陣列(string[]) 並印出第二個值<br/>
+5. 請利用Console.ReadLine()讀入一個字串並印出該字串 第3個以後字 與 第3到第5個字元
+                    </div>
+                </div>
+                <div class="slide" id="slide-4">
+                    <div class="unittitle">C# 陣列資料類型</div>
+                    <p>陣列可使用單一變數儲存多個值，設計者可透過陣列位置索引值來存取該位置陣列元素，C#陣列元素位置值從<em> 0 </em>開始，以下範例為C#陣列宣告方式：
+                    </p>
+                    <div class="codeblock">
+資料類別[] 變數名稱; //宣告一維空陣列<br/>
+資料類別[,] 變數名稱; //宣告二維空陣列<br/>
+資料類別[] 變數名稱=new 資料類別[陣列長度]; //宣告固定大小一維陣列<br/>
+資料類別[] 變數名稱=new 資料類別[] {以逗點隔開陣列值}; //宣告一維陣列並設定起始值
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行三個空白間隔數字，讀入4位同學成績，每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用<em>一維陣列變數</em>儲存讀入資料，計算並輸出每位同學平均成績至小數第二位。<br/>
+2. 請使用Console.ReadLine()方法，每行三個空白間隔數字，讀入4位同學成績，每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用<em>二維陣列變數</em>儲存讀入資料，計算並輸出每位同學平均成績至小數第二位。
+                    </div>
+                </div>
+                <div class="slide" id="slide-5">
+                    <div class="unittitle">C# 清單資料類型</div>
+                    <p>清單類型如同陣列用於儲存多個值，與陣列類型最大的不同是<em>陣列類型元素必須包含相同類型，但是清單類型元素可包含不同資料類型</em>。以下範例為C#清單宣告方式：</p>
+                    <div class="codeblock">
+List&lt;資料類別&gt; 變數名稱=new List&lt;資料類別&gt;(); //宣告空清單變數<br/>
+List&lt;資料類別&gt; 變數名稱=new List&lt;資料類別&gt;(){以逗點隔開起始值}; //宣告清單變數並設定起始值
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行包含空白間隔姓名及三個數字，讀入4位同學資料，數字代表每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用<em>清單變數</em>儲存讀入資料，清單變數第一個元素為4位同學姓名，第二個元素為第一位同學的三科成績，第三個元素為第二位同學的三科成績，依此類推，計算並輸出每位同學平均成績至小數第二位，輸出必須包含每位同學姓名。
+                    </div>
+                </div>
+                <div class="slide" id="slide-6">
+                    <div class="unittitle">C# 字典資料類型</div>
+                    <p>字典類型變數包含許多欄位，每個欄位包含 <em>鍵(key)</em> 與 <em>值(value)</em>，<em>鍵(key)</em> 用於參照欄位，使用者可以透過 <em>Add()</em> 方法，新增欄位置字典變數。以下範例為C#字典變數宣告方式：</p>
+                    <div class="codeblock">
+Dictionary&lt;鍵資料類別,值資料類別&gt; 變數名稱=new Dictionary&lt;鍵資料類別,值資料類別&gt;(); //宣告空字典變數<br/>
+變數名稱.Add(鍵,值); //新增字典值
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行包含空白間隔姓名及三個數字，讀入4位同學資料，數字代表每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用4個<em>字典變數</em>儲存讀入資料，字典變數第一個欄位為同學姓名，第二個至第四欄位為同學的三科成績，計算並輸出每位同學平均成績至小數第二位，輸出必須包含每位同學姓名。
+                    </div>
+                </div>
+                <div class="slide" id="slide-7">
+                    <div class="unittitle">C# 運算子</div>
+                    <p>運算子(operator)用於變數與值的運算，常用運算子包含<em>計算、設定、比較、邏輯</em>等，接下來每類運算子進行介紹。</p>
+                    <ul>
+                        <li>
+                            計算運算子<em> +、-、*、/、%、++、-- </em>，除了加、減、乘、除之外，<em>%</em>代表求餘數，<em>++</em>代表增加1簡寫，<em>--</em>代表減少1簡寫。
+                        </li>
+                        <li>
+                            設定運算子<em> =、+=、-=、*=、/=、%= </em>，用於變數設定表示，以<em>x+=5</em>為例代表<em>x=x+5</em>。
+                        </li>
+                        <li>
+                            比較運算子<em> ==、!=、&gt;、&gt;=、&lt;、&lt;= </em>，用於條件比較分別為 等於、不等於、大於、大於等於、小於、小於等於。
+                        </li>
+                        <li>
+                            邏輯運算子<em> &&、||、! </em>，用於串接多個條件比較分別為 且、或、否定。
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide" id="slide-8">
+                    <div class="unittitle">C# 條件敘述</div>
+                    <p>C# <em>if</em>條件敘述包含<em> if、if else、if else if else</em>，分別為一個條件動作設定、兩個條件動作與多個條件動作設定，接下來每個類別進行介紹。</p>
+                    <div class="codeblock">
+//一個條件動作設定
+if (1&lt;2) {
+    Console.WriteLine("1小於2");
+}<br/>
+//兩個條件動作設定
+if (1&lt;2) {
+    Console.WriteLine("1小於2");
+} else {
+    Console.WriteLine("1不小於2");
+}<br/>
+//多個條件動作設定
+if (1&gt;2) {
+    Console.WriteLine("1大於2");
+} else if (1==2) {
+    Console.WriteLine("1等於2");
+} else {
+    Console.WriteLine("1小於2");
+}
+                    </div>
+                    <p>C# <em>switch case</em>條件敘述介紹如下。</p>
+                    <div class="codeblock">
+//swicth 每個值至於 case之後，default為所有條件不滿足，每個動作需加break
+int x=1;
+switch (x) {
+    case 3:
+        Console.WriteLine("x為3");
+        break;
+    case 2:
+        Console.WriteLine("x為2");
+        break;
+    default:
+        Console.WriteLine("x不為2或3");
+        break;
+}
+                    </div>                   
+                </div>
+                <div class="slide" id="slide-9">
+                    <div class="unittitle">C# 迴圈敘述</div>
+                    <p>C# 迴圈命令包含<em> while、do while、for、foreach</em>，<em>while、do while</em> 差別在一開始結束條件或結束條件在最後，<em>for</em>迴圈使用方式<em> for (資料類型 變數=起始值;變數結束條件設定;變數增加值設定)</em>，<em>foreach</em>用於陣列或清單，<em>foreach (資料類型 元素變數 in 陣列或清單變數)</em>。</p>
+                    <div class="codeblock">
+//while印出1到10數字
+int i=1;
+while (i&lt;=10) {
+    Console.Write("{0,2:d}",i);
+    i=i+1;
+}<br/>
+//do while印出1到10數字
+i=1;
+do {
+    Console.Write("{0,2:d}",i);
+    i=i+1;
+} while (i&lt;=10);<br/>
+//for印出1到10數字
+for (i=1;i&lt;=10;i++) {
+    Console.Write("{0,2:d}",i);
+}<br/>
+//foreach印出陣列包含1到10元素
+int[] j=new int[]{1,2,3,4,5,6,7,8,9,10};
+foreach (int k in j) {
+    Console.Write("{0,2:d}",k);
+}
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行包含空白間隔姓名及三個數字，讀入4位同學資料，數字代表每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用<em>清單字典變數</em>儲存讀入資料，字典變數第一個欄位為同學姓名，第二個至第四欄位為同學的三科成績，計算並輸出每位同學平均成績至小數第二位，輸出必須包含每位同學姓名。
+                    </div>                  
+                </div>
+                <div class="slide" id="slide-10">
+                    <div class="unittitle">C# 函數</div>
+                    <p>C# 函數定義為<em> 函數傳回資料類型 函數名稱(資料類型 代入變數)</em>，函數可以有許多代入值，如果有傳回值則使用<em> return 傳回值</em>，如果沒有傳回值，函數傳回資料類型請設為<em>void</em>。</p>
+                    <div class="codeblock">
+//函數func1沒有代入值、沒有傳回值並印出Hello
+void func1() {
+    Console.WriteLine("Hello");
+}<br/>
+//函數func2代入兩個整數值並傳回兩個數字和
+int func2(int i,int j) {
+    return i+j;
+}<br/>
+//呼叫函數func1
+func1();<br/>
+//呼叫函數func2並印出兩數和
+Console.WriteLine(func2(10,20));
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用Console.ReadLine()方法，每行包含空白間隔姓名及三個數字，讀入4位同學資料，數字代表每位同學成績包含國文、英文、數學，總共需讀入4行資料，請使用<em>清單字典變數</em>儲存讀入資料，字典變數第一個欄位為同學姓名，第二個至第四欄位為同學的三科成績，請設計平均函數，代入每位同學三科成績並回傳平均成績，計算並輸出每位同學平均成績至小數第二位，輸出必須包含每位同學姓名。
+                    </div>                  
+                </div>
+
+
+            </div>
+            <!--課程單元按鈕-->
+            <div class="backbtn">
+                <a href="index.html" type="button" class="btn btn-primary btn-lg">返回單元</a>
+            </div>
+        </div>
+
+    
+    </div>
+    
+</body>
+
+</html>
