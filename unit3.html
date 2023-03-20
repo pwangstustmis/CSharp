@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>物件導向程式設計</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="scripts/myscript.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" >
+        <div class="sidenav">
+            <!--每個單元選項及選項說明-->
+            <div class="unititem">
+                <div><a href="#slide-1" class="itembutton" onclick="nextSlide(1);">1</a></div>
+                <div>物件導向程式簡介</div>                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-2" class="itembutton" onclick="nextSlide(2);">2</a></div>
+                <div>類別(class)定義</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-3" class="itembutton" onclick="nextSlide(3);">3</a></div>
+                <div>存取修飾(Access Modifier)</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-4" class="itembutton" onclick="nextSlide(4);">4</a></div>
+                <div>類別-列舉類別</div>                                                             
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-5" class="itembutton" onclick="nextSlide(5);">5</a></div>
+                <div>類別屬性存取</div>                                                               
+            </div>
+            
+        </div>
+        <div class="main">
+            <div class="slides">
+                <!--單元內容-->
+                <div class="slide" id="slide-1">
+                    <div class="unittitle">物件導向程式簡介</div>
+                    <p>結構化程式設計將原本問題切割成許多可解決小問題，之後再將這些已解決小問題組合起來用於解決原來問題。而物件導向程式不同於結構化程式，它不藉由函數或程式模組來解決問題，而是定義所謂的物件(object)，利用這些物件與物件的互動來解決問題。學習物件導向程式設計，必須要了解下列的重要概念 類別(class)、物件(object)、繼承(inheritance)、抽象(abstraction)、封裝(encapsulation)、多型(polymorphism)，以下將對這些概念簡單說明再進行介紹。</p>
+                    <ul>
+                        <li>
+                            <em>類別(class)</em>：<em>類別</em>用於描述定義不同獨立存在的個體，而這些個體在物件導向程式設計中稱為<em>物件</em>，用於描述定義不同獨立存在的個體，類別一般會包含個體共同的特性<em>(屬性)</em>與行為<em>(方法)</em>，例如簡單射擊遊戲中<em>玩家類別</em>共同特性包含如<em> 圖像、血量、子彈數目、位置 </em>等，行為包含如<em> 射擊、移動、武器更新 </em>等。
+                        </li>
+                        <li>
+                            <em>物件(object)</em>：<em>類別為物件的抽象定義，物件為類別實際的存在</em>。例如：玩家類別用於描述定義玩家應有特性及對應的行為，當實際程式執行時，C#使用<em> new </em>命令建利玩家類別的對應玩家物件，之後玩家物件可實際對應至遊戲中不同的玩家。
+                        </li>
+                        <li>
+                            <em>繼承(inheritance)</em>：類別具有繼承的概念，新類別可以繼承現有的類別並用於建立新的類別，例如：超級玩家類別除包含現有玩家的設定，還加上新的設定與功能，要設計這樣的超級玩家，我們讓超級玩家繼承玩家類別後再加入新設定的設定與功能。
+                        </li>
+                        <li>
+                            <em>抽象(abstraction)</em>：抽象的目的是用簡單的事物來表示複雜的動作，其目的用於隱藏抽象概念執行細節，例如我們都知道如何打開電視而不需要知道電視如何被開啟的實際步驟，這種引隱藏執行細節的概念就是抽象。透過抽象概念，使用者只需要知道介面的操作，這讓設計者可以更專注於設計不同或更複雜的步驟。
+                        </li>
+                        <li>
+                            <em>封裝(encapsulation)</em>：封裝目的為隱藏物件的內部狀態和功能，讓使用者透過允許的公用的函數來存取類別資料與其他功能。
+                        </li>
+                        <li>
+                            <em>多型(polymorphism)</em>：多型目的是希望能以相同的方式來執行不同的動作，例如動物都會叫，可是叫的動作會不一樣，透過多型的概念，我們就可以設計適涵蓋多種動物叫的動作。
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide" id="slide-2">
+                    <div class="unittitle">類別(class)定義</div>
+                    <p>類別為一抽象對象的描述，類別描述對象的<em>屬性與動作</em>，如果設計者完整了解描述對象時，可用單一類別來描述對象。當設計者部分了解或不了解描述對象時，可以透過抽象描述abstract、interface來定義類別，之後再對這些動作進行實際製作。因為類別具有繼承功能，可以讓設計者能不斷擴展原先設計藍圖來因應後續新增的功能與變化。</p>
+                    <p>
+                    物件導向程式利用物件來解決問題，而<em>類別(class)</em>為物件的抽象描述，類別描述並定義物件的屬性與方法，所以<em> 類別為物件的定義，而物件為類別的實現</em>，舉例來說：建造房屋的藍圖就像類別，而藍圖的實現就是房屋。<em>類別定義包含類別名稱、屬性、方法，屬性是用於描述對應類別特性，而方法是定義類別可執行的動作</em>。</p>
+                    <p>
+                    下列程式定義C#類別架構，<em>using</em>用於宣告使用程式模組命名空間，<em>System</em>命名空間包含主控台應用的常用函數定義，<em> namespace </em>用於設定類別所屬命名空間。命名空間用於定義相近的類別與屬性所屬範圍，同時也可以避免專案整合時會產生名稱衝突的問題。類別定義如自訂類別，定義方式為<em> 存取修飾 class 類別名稱</em>，<em>存取修飾</em>用於設定對象可被存取範圍，常見存取修飾包含<em>public、private、protected、internal</em>，如果類別宣告未設定存取修飾，C#會將存取修飾預設為<em>internal</em>，以<em>Program類別</em>為例，程式定義存取修飾為<em>internal</em>的<em>Program類別</em>，Program類別中<em>Main方法</em>是專案程式執行的進入點，請注意：<em>C#程式只能有一個Main方法</em>，同時Main方法的存取修飾為<em>static</em>，Main方法可由主控台代入參數至變數args。</p>
+                    <p>如先前說明，<em>存取修飾(access modifier)</em>用於設定可被存取的範圍，常見存取修飾包含<em> public、private、protected、internal</em>，存取修飾<em> public </em>定義為公用，可被<em>自己與其他的類別</em>所使用，存取修飾<em> private </em>定義為私有，只能給自己的類別使用，存取修飾<em> protected </em>定義保護，可以給自己或繼承自己的後代類別所使用，存取修飾<em> internal </em>定義內部，可讓同一專案下類別使用，<em>類別屬性與方法如未宣告存取修飾</em>，預設為 private。類別名稱建議使用<em>PascalCase</em>方式命名、屬性、方法的命名方式建議<em>lowerCamel</em>方式命名。
+                    </p>                           
+                    <div class="codeblock">
+    //Program.cs
+    using System;
+    namespace [設計者設定類別空間名稱]
+    {
+        //主程式(專案進入點)
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Hello World!");
+            }
+        }
+
+        //自訂類別
+        存取修飾 class 類別名稱 {
+            存取修飾 資料類型 屬性變數名稱;
+            存取修飾 傳回類型 方法名稱(資料類型 代入參數名稱) {
+
+                return 傳回值; //
+            }
+        }       
+    }
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請建立主控台應用專案，並建立Program類別及對應Main方法，執行專案時印出自己學號。<br/>
+2. 請將上題命名空間修改為<em>myclasses</em>
+3. 請建立學生(<em>Student</em>)類別，包含屬性： <em>姓名(name)、地址(address)、電話(phone)</em>，方法： <em>登入(Login)、註冊(Register)</em>，登入傳回布林值、註冊無傳回值。
+                    </div>
+                </div>
+                <div class="slide" id="slide-3">
+                    <div class="unittitle">存取修飾(Access Modifier)</div>
+                    <p>如簡介說明，<em>類別為物件的抽象定義，物件為類別實際的存在</em>，要在程式使用對應類別，必須建立對應類別物件，使用<em> new 類別名稱()</em>可產生對應類別物件，詳細物件建立方式會在物件單元詳述，要能正確地使用對應類別物件屬性與方法，<em>正確存取修飾設定</em>非常重要，以下列程式為例，主程式中<em>s.name="甲"</em>會產生錯誤，<em>因為學生類別中未設定name屬性存取修飾，預設為private，private存取修飾宣告該對象只能在物件本身被存取，不能在本身之外被存取，所以Student物件s的name屬性無法在Program類別中被設定，因此產生錯誤</em>。</p>
+                    <div class="codeblock">
+    //Program.cs
+    using System;
+    namespace myclasses
+    {
+        //主程式(專案進入點)
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Student s=new Student();
+                s.name="甲"; //產生錯誤
+            }
+        }
+
+        //自訂類別
+        class Student {
+            string? name;
+            string? address;
+            string? phone;
+            bool Login() {
+                return false;
+            }
+            void Register() {
+
+            }
+        }       
+    }
+                    </div>
+                    <div class="unittitle">練習-存取修飾</div>
+                    <div class="codeblock">
+1. 下列程式宣告類別 Student、Program為 internal，類別Student屬性Name設為 public同時預設值為 甲，並包含一個public 方法 Print，在方法 Print中使用Console.WriteLine()方法印出name屬性，在主程式產生Student物件並執行Print方法<br/>
+2. 將題1類別Student屬性Name與print方法設為 private會產生何種結果<br/>
+3. 將題1類別Student屬性Name與print方法設為 protected會產生何種結果<br/>
+4. 將題1類別Student屬性Name與print方法設為 internal會產生何種結果<br/>
+                    </div>
+                </div>
+                <div class="slide" id="slide-4">
+                    <div class="unittitle">類別-列舉類別</div>
+                    <p>列舉類別用於宣告一串不可變動常數的組合，設計者透過<em> enum </em>命令宣告列舉類別，列舉類別也可宣告於其他類別中，使用列舉類別僅需使用 <em>類別.列舉值 </em>即可傳回類舉類別。
+                    </p>
+                    <div class="codeblock">
+    using System;
+    namespace classes
+    {
+        enum Dept
+        {
+            資訊管理系,
+            企業管理系,
+            財務金融系
+        }
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Dept d = Dept.資訊管理系;
+                Console.WriteLine(d);
+            }
+        }
+    }
+                    </div>
+                </div>
+                <div class="slide" id="slide-5">
+                    <div class="unittitle">類別屬性存取</div>
+                    <p>類別屬性存取時可透過<em> get、set </em>設定存取的程式區塊，設定方式如下。一般屬性值設定均置於一私有暫時變數中，並利用此私有暫時變數來儲存屬性值，透過此種方式可隱藏真正屬性欄位名稱。</p>
+                    <div class="codeblock">
+    存取修飾 class 類別名稱 {
+        存取修飾 屬性類型 屬性名稱 {
+            get; set;
+        }
+    }
+
+    存取修飾 class 類別名稱 {
+        private 屬性類型 _屬性名稱=起始值;
+        存取修飾 屬性類型 屬性名稱 {
+            get => _屬性名稱;
+            set => _屬性名稱=value;
+        }
+    }
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請使用屬性存取設定類別 Person，包含字串類型屬性 Gender(性別)，預設為 女
+                    </div>
+                </div>
+                
+
+
+            </div>
+            <!--課程單元按鈕-->
+            <div class="backbtn">
+                <a href="index.html" type="button" class="btn btn-primary btn-lg">返回單元</a>
+            </div>
+        </div>
+
+    
+    </div>
+    
+</body>
+
+</html>
