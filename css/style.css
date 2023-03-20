@@ -95,6 +95,7 @@ a.itembutton:visited {
     margin:0px auto;
     background-color: #fff;
     padding-bottom:80px;
+    font-size:14pt;
 }
 
 .slides > .slide:nth-child(n+2) {
