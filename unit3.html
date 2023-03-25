@@ -34,7 +34,27 @@
             </div>
             <div class="unititem">
                 <div><a href="#slide-5" class="itembutton" onclick="nextSlide(5);">5</a></div>
-                <div>類別屬性存取</div>                                                               
+                <div>類別屬性存取</div>          
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-6" class="itembutton" onclick="nextSlide(6);">6</a></div>
+                <div>物件(object)</div>          
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-7" class="itembutton" onclick="nextSlide(7);">7</a></div>
+                <div>static保留字</div>          
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-8" class="itembutton" onclick="nextSlide(8);">8</a></div>
+                <div>繼承(inheratance)</div>          
+            </div>           
+            <div class="unititem">
+                <div><a href="#slide-9" class="itembutton" onclick="nextSlide(9);">9</a></div>
+                <div>抽象(Abstraction)</div>          
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-10" class="itembutton" onclick="nextSlide(10);">10</a></div>
+                <div>多型(Polymorphism)</div>          
             </div>
             
         </div>
@@ -191,6 +211,265 @@
                     <div class="unittitle">練習</div>
                     <div class="codeblock">
 1. 請使用屬性存取設定類別 Person，包含字串類型屬性 Gender(性別)，預設為 女
+                    </div>
+                </div>
+                <div class="slide" id="slide-6">
+                    <div class="unittitle">物件(object)</div>
+                    <p>物件為類別實際的存在，在C#透過<em> new </em>命令可以建立對應類別的物件。類別定義中可以包含一個特殊方法稱為<em>建構式(constructor)</em>，建構式為一<em>方法，不具傳回類型、名稱與類別相同、可以有代入值</em>，建構式本身會在建立物件時被自動執行。</p>
+                    <div class="codeblock">
+    // Student類別建構式
+    using System;
+    namespace classes {
+        class Student {
+            public Student() {
+                Console.Write("從Student類別建構式");
+            }
+        }
+        class Program {
+            static void Main(string[] args) {
+                Student s=new Student(); //建立物件
+            }
+        }
+    }
+                    </div>
+                    <p>保留字<em>this</em>用於代表類別現在的物件，如果建構式代入參數名稱與屬性名稱相同，程式將無法分辨屬性與代入參數，透過保留字<em>this</em>用於指定物件屬性。</p>
+                    <div class="codeblock">
+    // Student類別建構式
+    using System;
+    namespace classes {
+        private String Id;
+        public Student(String Id) {
+            Id=Id; //產生錯誤
+        }
+        class Program {
+            static void Main(string[] args) {
+                Student s=new Student(); //建立物件
+            }
+        }
+    }
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請在上述Student類別加入_name屬性，並設定起始值為 甲 ，之後在建構式中輸出學生姓名。
+2. 請在上述Student類別加入_name屬性，在建構式代入姓名並輸出。
+3. 請將上述Student類別中_name屬性設為私有，加入公有屬性 name並搭配屬性存取(get、set)，在建構式代入姓名後，在主程式輸出學生姓名。
+                    </div>
+                </div>
+                <div class="slide" id="slide-7">
+                    <div class="unittitle">static保留字</div>
+                    <p>保留字<em>static(靜態)</em>用於宣告共有類別、方法、屬性，當一個類別包含靜態方法、屬性，<em>不需要建立物件久就可以使用這些屬性或方法</em>，使用方式為<em>類別名稱.靜態屬性、類別名稱.方法</em>。請注意：<em>如果類別宣告為static，則該類別不能建立物件</em>。</p>
+                    <div class="codeblock">
+    // Student類別建構式
+    using System;
+    namespace classes {
+        class Student {
+            public static String SchoolName="南臺科技大學";
+        }
+        class Program {
+            static void Main(string[] args) {
+              Console.WriteLine(Student.SchoolName);
+            }
+        }
+    }
+                    </div>
+                </div>
+                <div class="slide" id="slide-8">
+                    <div class="unittitle">繼承(inheratance)</div>
+                    <p>繼承(inheritance)讓程式可以重複使用(子類別繼承父類別)屬性與方法、新增自己的屬性與方法、覆寫繼承方法，C#中透過<em>子類別:父類別</em>用於宣告繼承父類別的子類別，<em>子類別會繼承父類別private存取修飾以外的設定</em>，子類別繼承的方法可藉由<em>override</em>宣告來覆寫富類別的方法，但是父類別中對應方法必須宣告為<em>virtual</em>，覆寫的概念會在多型(polymorphism)中介紹。</p>
+                    <div class="codeblock">
+    // Animal類別為父類別，Dog類別繼承Animal類別並新增Display方法
+    using System;
+    namespace classes {
+        class Animal {
+            public String Name;
+        }
+        class Dog:Animal {
+            public void Display() {
+                Console.WriteLine("動物:"+this.Name);
+            }
+        }
+        class Program {
+            static void Main(string[] args) {
+                Dog d=new Dog();
+                d.Name="柴犬";
+                d.Display();
+            }
+        }
+    }
+                    </div>
+                    <div class="codeblock">
+    // Animal類別為父類別，Dog類別繼承Animal類別並新增Display方法
+    using System;
+    namespace classes {
+        class Animal {
+            public String Name;
+            public virtual void Display() {
+              Console.WriteLine("動物:");
+            }
+        }
+        class Dog:Animal {
+            public override void Display() {
+              Console.WriteLine("Dog動物:"+this.Name);
+            }
+        }
+        class Program {
+            static void Main(string[] args) {
+              Dog d=new Dog();
+              d.Name="柴犬";
+              d.Display();
+            }
+        }
+    }
+                    </div>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請修改Animal類別定義，包含屬性 feed。。
+2. 請定義Animal類別子類別 Dog類別，並設定 feed 為四足動物。
+3. 請定義Animal類別子類別 Fish類別，並設定 feed 為水生動物。
+4. 請在Animal類別定義，包含無傳回值可覆寫動作 voice。
+5. 請定義Animal類別子類別 Dog類別，覆寫動作 voice並顯示 汪汪。
+6. 請定義 Person類別包含SetAge(int n)與Greeting()方法，SetAge(int n)設定該Person的age(年齡)，Greeting()顯示您好。之後定義Student與Teacher類別，這兩個類別均繼承 Person類別，Student類別定義公共方法GotoClasses 顯示 我去上學，同時定義公共方法ShowAge 顯示 我現在xx歲，xx代表學生現在age(年齡)。Teacher類別定義公共方法Explain 顯示 開始解說。<em>主程式類別Program類別Main方法中，新增一個Person並讓他顯示 您好，新增一位21歲學生並讓他說 您好並顯示他的年齡，新增一位30歲Teacher並讓他說 您好並執行解說</em>。
+                    </div>
+                </div>
+                <div class="slide" id="slide-9">
+                    <div class="unittitle">抽象(Abstraction)</div>
+                    <p>抽象的概念是用簡單的事物來執行複雜的動作，其目的用於隱藏抽象概念執行細節。在C#中定義抽象概念包含兩個關鍵字<em>abstract、interface</em>，關鍵字<em>abstract</em>用於定義抽象 類別或方法，<em>abstract抽象類別僅能被繼承</em>，當設計類別方法不了解實際如何製作，可宣告這個類別為<em>abstract</em>抽象類別，透過繼承並進行覆寫(override)完成未完成之方法。</p>
+                    <div class="codeblock">
+    public abstract class MobilePhone
+    {
+        public void Call()
+        {
+            Console.WriteLine("撥電話");
+        }
+        public void Sms()
+        {
+            Console.WriteLine("簡訊");
+        }
+        public abstract void Color();
+        public abstract void ScreenSize();
+        public abstract void OperatingSystem();
+    }
+    public class iPhone : MobilePhone
+    {
+        public override void Color()
+        {
+            Console.WriteLine("iPhone顏色");
+        }
+        public override void ScreenSize()
+        {
+            Console.WriteLine("iPhone大小");
+        }
+        public override void OperatingSystem()
+        {
+            Console.WriteLine("iPhone作業系統");
+        }
+    }
+                    </div>
+                    <p>關鍵字<em>interface</em>用於定義抽象方法，<em>不設定存取修飾、預設為共有(public)、透過繼承並完成未完成之方法</em>。繼承類別為完全繼承包含屬性與方法，如果某些方法僅限定於特殊類別，則可透過interface定義來繼承該方法。</p>
+                    <div class="codeblock">
+    interface MobilePhone
+    {
+        void Color();
+        void ScreenSize();
+        void OperatingSystem();
+    }
+    public class iPhone : MobilePhone
+    {
+        public void Color()
+        {
+            Console.WriteLine("iPhone顏色");
+        }
+        public void ScreenSize()
+        {
+            Console.WriteLine("iPhone大小");
+        }
+        public void OperatingSystem()
+        {
+            Console.WriteLine("iPhone作業系統");
+        }
+    }
+                    </div>
+                </div>
+                <div class="slide" id="slide-10">
+                    <div class="unittitle">多型(Polymorphism)</div>
+                    <p>多型是指他可以允許類別中具有名稱相同但型態不同的方法，多型介紹將涵蓋<em>單一類別多型(overload,多載)與繼承類別多型包含(方法隱藏與override,覆寫)</em>。</p>
+                    <p>同一類別中方法名稱相同、引數或返回值不同的多個方法即為<em>多載(overload)</em>。</p>
+                    <div class="codeblock">
+    // Animal類別建構式多載
+    using System;
+    namespace classes {
+        class Animal {
+            public String name;
+            public Animal() {
+                Name="無";
+            }
+            public Animal(string _name) {
+                name=_name;
+            }
+        }
+
+        class Program {
+            static void Main(string[] args) {
+                Animal a1=new Animal();
+            }     
+        }
+    }
+                    </div>
+                    <p><em>方法隱藏(method hiding)</em>讓子類別可藉由<em>new</em>命令重新定義與父類別相同名稱的函數，子類別呼叫該函數時，是呼叫子類別定義函數，但是子類別可以透過<em>base</em>命令來呼叫父類別的函數。</p>
+                    <div class="codeblock">
+    // Dog類別繼承Animal類別並隱藏Roar方法
+    using System;
+    namespace classes {
+        class Animal {
+            public void Roar() {
+                Console.WriteLine("無");
+            }
+        }
+        class Dog:Animal {
+            public new void Roar() {
+                base.Roar();  //透過base呼叫Dog父類別Animal的Roar方法
+                Console.WriteLine("汪");
+            }
+        }
+
+        class Program {
+            static void Main(string[] args) {
+                Dog d=new Dog();
+                d.Roar();
+            }      
+        }
+    }
+                    </div>
+                    <p><em>覆寫(override)</em>讓子類別繼承父類別函數進行覆蓋，請注意：<em>子類別的函數名稱與參數必須與父類別相同，同時父類別的函數必須加上virtual宣告，子類別函數必須加上override宣告</em>。如果需執行以複寫父類別方法，可使用<em>base</em>關鍵字，如需執行父類別建構式也可透過<em>base</em>命令來呼叫。</p>
+                    <div class="codeblock">
+    // Animal類別為父類別，Dog類別繼承Animal類別並覆寫Display方法
+    using System;
+    namespace classes {
+        class Animal {
+            public String Name;
+            public virtual void Roar() {
+                Console.WriteLine("無");
+            }
+            public Animal(string _name) {
+                Name=_name;
+            }
+        }
+        class Dog:Animal {
+            public Dog(string _name) : base(_name)
+            {
+            }
+            public override void Roar() {
+                base.Roar();
+                Console.WriteLine("汪");
+            }
+        }
+
+        class Program {
+            static void Main(string[] args) {
+                Dog d=new Dog("柴犬");
+            }     
+        }
+    }
                     </div>
                 </div>
                 
