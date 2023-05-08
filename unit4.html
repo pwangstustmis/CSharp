@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Godot遊戲引擎</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="scripts/myscript.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" >
+        <div class="sidenav">
+            <!--每個單元選項及選項說明-->
+            <div class="unititem">
+                <div><a href="#slide-1" class="itembutton" onclick="nextSlide(1);">1</a></div>
+                <div>Godot專案設定</div>                                           
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-2" class="itembutton" onclick="nextSlide(2);">2</a></div>
+                <div>場景-Scene</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-3" class="itembutton" onclick="nextSlide(3);">3</a></div>
+                <div>精靈2D(Sprite2D)-背景</div>                                                              
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-4" class="itembutton" onclick="nextSlide(4);">4</a></div>
+                <div>精靈2D(Sprite2D)-玩家</div>                                                             
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-5" class="itembutton" onclick="nextSlide(5);">5</a></div>
+                <div>輸入控制</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-6" class="itembutton" onclick="nextSlide(6);">6</a></div>
+                <div>動態載入場景</div>                                                               
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-7" class="itembutton" onclick="nextSlide(7);">7</a></div>
+                <div>節點-Timer</div>
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-" class="itembutton" onclick="nextSlide(8);">8</a></div>
+                <div>節點-VisibleOnScreenNotifier2D</div>
+            </div>
+            
+        </div>
+        <div class="main">
+            <div class="slides">
+                <!--單元內容-->
+                <div class="slide" id="slide-1">
+                    <div class="unittitle">Godot專案設定</div>
+                    <ul>
+                        <li>請確認依照單元一安裝 Godot 相關套件</li>
+                        <li>點選Godot win64執行檔開啟Godot</li>
+                        <li>點選<em>新增專案</em>，<em>設定專案名稱</em>並將<em>專案路徑設定為專案檔案夾(如project1)位置</em>，點選建立並編輯</li>
+                        <li>選擇 2D場景並點選<em> 專案選單-專案設定</em>，選擇 <em>啟動畫面</em> 設定背景顏色，選擇 <em>視窗</em> 捨定視窗大小。更改節點名稱為<em> World</em></li>
+                        <li>點選<em> 專案選單-專案設定</em>，選擇 <em>啟動畫面</em> 設定背景顏色，選擇 <em>視窗</em> 捨定視窗大小。</li>
+                        <li>
+                            選擇 <em>專案-工具-C#-Create C# solution</em>，場景視窗下方會出現 <em>MSBuild</em>，點選 <em>MSBuild</em>，並在對應視窗中選擇 <em>Build-Rebuild Solution</em>
+                        </li>
+                    </ul>
+                    <p>簡單射擊遊戲內容包含：背景圖片設定、腳色設定、動作控制及碰撞偵測，課程將依照上述順序進行說明。</p>
+                </div>
+                <div class="slide" id="slide-2">
+                    <div class="unittitle">場景(Scene)</div>
+                    <p>Godot遊戲由場景所組成，遊戲可以包含一個場景或由許多場景組成，場景為一樹狀架構，包含一個根結點，其他遊戲物件(節點、Node)為根節點的後裔，Godot最少包含一個主場景，遊戲的各個部份(玩家、敵人)也可設為場景，之後再動態載入，首先請點選 <em>場景視窗左邊2D場景建立 Node2D節點後，將節點名稱改為 World</em>。</p>
+                </div>
+                <div class="slide" id="slide-3">
+                    <div class="unittitle">精靈2D(Sprite2D)-背景</div>
+                    <p>精靈2D(Sprite2D)節點可用於設定2D材質，下載 <a href="imgs/units/background.jpg">背景圖</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>background</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為背景圖，修改視窗大小為<em>1280 x 800</em>，修改精靈2D(Sprite2D)節點大小，讓它覆蓋整個視窗。</p>
+                </div>
+                <div class="slide" id="slide-4">
+                    <div class="unittitle">精靈2D(Sprite2D)-玩家</div>
+                    <p>下載 <a href="imgs/units/player.png">玩家</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>player</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為玩家圖，修改玩家大小為原來大小<em>0.4</em>，並置於視窗下方中央。</p>
+                </div>
+                <div class="slide" id="slide-5">
+                    <div class="unittitle">輸入控制</div>
+                    <p>點選<em>player</em>節點加入<em>C#</em>控制語言後按建立，專案會在專案目錄下產生<em>player.cs</em>檔案，檔案內容如下：
+                    </p>
+                    <div class="codeblock">
+using Godot;
+using System;
+
+public partial class player : Sprite2D
+{
+	// 當節點第一次載入場景時執行
+	public override void _Ready()
+	{
+	}
+
+	// 每次畫面執行， 'delta' 為上一畫面到現在畫面經過時間
+	public override void _Process(double delta)
+	{
+	}
+}
+                    </div>
+                    <p>請使用<em>VSCode</em>程式開啟專案目錄後，開啟player.cs檔案，Godot在C#使用 <em>Input.IsKeyPressed(Key.鍵值)</em>偵測使用者是否按下該鍵值，我們將在<em>_Process</em>方法搭配<em>GD.Print</em>方法印出使用者按下鍵值。玩家節點位置物件(<em>Position</em>)為一<em>Vector2</em>物件，可以透過改變<em>Position</em>物件值來改變玩家位置。</p>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 當使用者按下左鍵時，請利用<em>GD.Print</em>方法印出 左鍵，當使用者按下右鍵時，請利用<em>GD.Print</em>方法印出 右鍵
+2. 請使用上述偵測鍵盤方式，並設定<em>私有(float)Speed</em>屬性為300f，當使用者按下左鍵，請設定位置<em>Position</em>物件減去<em>Vector2(Speed*(float)delta,0)</em>，當使用者按下右鍵，請設定位置<em>Position</em>物件增加<em>Vector2(Speed*(float)delta,0)</em>
+                    </div>
+                </div>
+                <div class="slide" id="slide-6">
+                    <div class="unittitle">動態載入場景</div>
+                    <p>本單元將設計新場景<em>Laserplayer</em>，並在<em>player.cs</em>程式中動態載入，當玩家按下<em>空白鍵</em>時發射子彈。
+                    </p>
+                    <p>請點選<2D場景視窗</p>並按下<em>+</em>新增場景，下載 <a href="imgs/units/laserplayer.png">玩家子彈</a> 並置於專案目錄 <em>assets</em>中，在新場景根節點新增<em>精靈2D(Sprite2D)</em>節點，重新命名為<em>Laserplayer</em>，並設定材質為<em>laserplayer.png</em>，之後對<em>Laserplayer</em>節點新增C#控制程式<em>Laserplayer.cs</em>，在<em>Laserplayer.cs</em>設定子彈速度屬性<em>speed</em>，並在<em>_Process</em>方法改變子彈<em>Y軸</em>位置。
+                    <div class="codeblock">
+using Godot;
+using System;
+
+public partial class Laserplayer : Sprite2D
+{
+	private float Speed=300f;
+    // 當節點第一次載入場景時執行
+	public override void _Ready()
+	{
+	}
+
+	// 每次畫面執行， 'delta' 為上一畫面到現在畫面經過時間
+	public override void _Process(double delta)
+	{
+        this.Position-=new Vector2(0,Speed*(float)delta);
+	}
+}
+                    </div>
+                    <p>在<em>player.cs</em>動態載入載入場景需要兩個步驟</p>
+                    <ul>
+                        <li>使用<em>GD.Load%lt;PackedScene&gt;("外部場景檔案.tscn")</em>載入外部場景，同時需設定<em>儲存PackedScene屬性</em></li>
+                        <li>
+                            使用<em>儲存PackedScene屬性.Instatiate()</em>方法來產生場景物件，<em>請注意：場景物件類型為場景類別名稱或是場景根節點類型</em>
+                        </li>
+                        <li>在<em>player</em>物件，使用GetParent().AddChild()方法加入新場景節點</li>
+                    </ul>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請在<em>player.cs</em>中動態載入<em>laserplayer</em>場景，並設定當玩家按下空間棒(Space)時，在<em>world</em>場景中加入<em>laserplayer</em>物件
+                    </div>
+                </div>
+
+                <div class="slide" id="slide-7">
+                    <div class="unittitle">延遲-Timer物件</div>
+                    <p>完成上一單元練習後，會發現有多個子彈發射的問題(如下圖)，原因是因為玩家一直按住空間棒的原因，要解決這個問題，我們將透過<em>Timer</em>節點，並搭配布林變數，讓玩家在設定時間內，只能發射1顆子彈。
+                    </p>
+                    <p><img src="imgs/unit4/slide-7-1.png"></p>
+                    <p>請在<em>player</em>節點下加入<em>Timer</em>節點，並在<em>player.cs</em>中設定三個變數<em>布林值 CanFire、浮點數 AttackSpeed、Timer timer變數</em>，接下來在<em>player.cs</em>中<em>_ready</em>函數加入下列程式</p>
+                    <div class="codeblock">
+//取得名稱為Timer的節點
+_timer = this.GetNode<Timer>("Timer");
+//設定執行完畢後停止
+_timer.OneShot = true;
+//設定等待時間(秒)
+_timer.WaitTime = 1/AttackSpeed;
+//設定可以射擊布林變數值為 true
+CanFire = true;
+//當等待時間完畢後，須執行函數
+_timer.Timeout+=()=>{ReEnableAttack();};
+                    </div>
+                    <p>在<em>_Process</em>函數設定當射擊變數<em>CanFire</em>為<em>true</em>時，將射擊變數<em>CanFire</em>設為<em>false</em>，並利用<em>timer變數.Start()</em>函數開始計時，之後加入子彈，因為射擊變數<em>CanFire</em>現在為<em>false</em>，既使玩家持續按空白鍵，還是部會發射，在時間結束執行程式中要將射擊變數<em>CanFire</em>設為<em>false</em>。</p>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請設定延遲發射每秒2發子彈
+                    </div>
+                </div>
+                <div class="slide" id="slide-8">
+                    <div class="unittitle">節點-VisibleOnScreenNotifier2D</div>
+                    <p><em>VisibleOnScreenNotifier2D</em>節點用於偵測節點是否在或離開螢幕範圍，透過<em>IsOnScreen()</em>函數傳回布林值(true/false)表示是否在螢幕內，或是透過<em>ScreenExited</em>事件設定當離開螢幕時要執行的動作，事件設定方式同<em>Timer</em>節點。</p>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 請在<em>laserplayer</em>場景中加入<em>VisibleOnScreenNotifier2D</em>節點，並在<em>_Process</em>函數利用<em>IsOnScreen()</em>函數，檢查玩家子彈是否離開螢幕範圍，如果是，請利用<em>GD.Print</em>函數輸出 <em>Bullet is out of screen</em>
+2. 請利用<em>ScreenExited</em>事件設定，檢查玩家子彈是否離開螢幕範圍，如果是，請利用<em>GD.Print</em>函數輸出 <em>Bullet is out of screen</em>
+3. 當玩家子彈是否離開螢幕範圍時，請利用<em>QueueFree()</em>函數將子彈移除
+                    </div>
+                </div>
+
+                <div class="slide" id="slide-9">
+                    <div class="unittitle">CharacterBody2D</div>
+                    <p><em>CharacterBody2D</em>節點透過程式控制，同時適用於不須進階物理性質並包含移動碰撞偵測等功能。<em>CharacterBody2D</em>將包含<em>Sprite2D</em>與<em>CollisionShape2D</em>節點，<em>Sprite2D</em>用於設定腳色材質(Texture)，<em>CollisionShape2D</em>透過碰撞區域(Collision Shape)設定碰撞。</p>
+                    <div class="unittitle">練習</div>
+                    <p>請下載<a href="imgs/unit4/player.png">玩家</a>圖片並放入專案目錄後，製作如下練習</p>
+                    <div class="codeblock">
+1. 請在遊戲視窗下方中央加入<em>CharacterBody2D</em>節點，同時將節點名稱設為<em>player</em>
+2. 請在<em>player</em>節點下加入<em>Sprite2D</em>與<em>CollisionShape2D</em>節點
+3. 請設定<em>Sprite2D</em>材質為玩家圖片
+4. 請設定<em>CollisionShape2D</em>為RectangleShape2D並涵蓋玩家圖片
+                    </div>
+                    <p></p>
+                    <p><img src="imgs/unit4/slide3-exer.png"></p>
+                </div>
+
+            </div>
+            <!--課程單元按鈕-->
+            <div class="backbtn">
+                <a href="index.html" type="button" class="btn btn-primary btn-lg">返回單元</a>
+            </div>
+        </div>
+
+    
+    </div>
+    
+</body>
+
+</html>
