@@ -45,14 +45,25 @@
                 <div>節點-Timer</div>
             </div>
             <div class="unititem">
-                <div><a href="#slide-" class="itembutton" onclick="nextSlide(8);">8</a></div>
+                <div><a href="#slide-8" class="itembutton" onclick="nextSlide(8);">8</a></div>
                 <div>節點-VisibleOnScreenNotifier2D</div>
             </div>
             <div class="unititem">
-                <div><a href="#slide-" class="itembutton" onclick="nextSlide(9);">8</a></div>
+                <div><a href="#slide-9" class="itembutton" onclick="nextSlide(9);">9</a></div>
                 <div>節點-AudioStreamPlayer2D</div>
             </div>
-            
+            <div class="unititem">
+                <div><a href="#slide-10" class="itembutton" onclick="nextSlide(10);">10</a></div>
+                <div>節點-StaticBody2D</div>
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-11" class="itembutton" onclick="nextSlide(11);">11</a></div>
+                <div>節點-CharacterBody2D</div>
+            </div>
+            <div class="unititem">
+                <div><a href="#slide-12" class="itembutton" onclick="nextSlide(12);">12</a></div>
+                <div>射擊及撞擊偵測</div>
+            </div>            
         </div>
         <div class="main">
             <div class="slides">
@@ -77,11 +88,11 @@
                 </div>
                 <div class="slide" id="slide-3">
                     <div class="unittitle">精靈2D(Sprite2D)-背景</div>
-                    <p>精靈2D(Sprite2D)節點可用於設定2D材質，下載 <a href="imgs/units/background.jpg">背景圖</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>background</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為背景圖，修改視窗大小為<em>1280 x 800</em>，修改精靈2D(Sprite2D)節點大小，讓它覆蓋整個視窗。</p>
+                    <p>精靈2D(Sprite2D)節點可用於設定2D材質，下載 <a href="imgs/unit4/background.jpg">背景圖</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>background</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為背景圖，修改視窗大小為<em>1280 x 800</em>，修改精靈2D(Sprite2D)節點大小，讓它覆蓋整個視窗。</p>
                 </div>
                 <div class="slide" id="slide-4">
                     <div class="unittitle">精靈2D(Sprite2D)-玩家</div>
-                    <p>下載 <a href="imgs/units/player.png">玩家</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>player</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為玩家圖，修改玩家大小為原來大小<em>0.4</em>，並置於視窗下方中央。</p>
+                    <p>下載 <a href="imgs/unit4/player.png">玩家</a> 並置於專案目錄 <em>assets</em>中，請自行新增 <em>assets</em> 目錄，在<em>World</em>節點下新增<em>Sprite2D</em>節點，重新命名為<em>player</em>，並設定精靈2D(Sprite2D)節點材質(Texture)為玩家圖，修改玩家大小為原來大小<em>0.4</em>，並置於視窗下方中央。</p>
                 </div>
                 <div class="slide" id="slide-5">
                     <div class="unittitle">輸入控制</div>
@@ -115,7 +126,7 @@ public partial class player : Sprite2D
                     <div class="unittitle">動態載入場景</div>
                     <p>本單元將設計新場景<em>Laserplayer</em>，並在<em>player.cs</em>程式中動態載入，當玩家按下<em>空白鍵</em>時發射子彈。
                     </p>
-                    <p>請點選<2D場景視窗</p>並按下<em>+</em>新增場景，下載 <a href="imgs/units/laserplayer.png">玩家子彈</a> 並置於專案目錄 <em>assets</em>中，在新場景根節點新增<em>精靈2D(Sprite2D)</em>節點，重新命名為<em>Laserplayer</em>，並設定材質為<em>laserplayer.png</em>，之後對<em>Laserplayer</em>節點新增C#控制程式<em>Laserplayer.cs</em>，在<em>Laserplayer.cs</em>設定子彈速度屬性<em>speed</em>，並在<em>_Process</em>方法改變子彈<em>Y軸</em>位置。
+                    <p>請點選<2D場景視窗</p>並按下<em>+</em>新增場景，下載 <a href="imgs/unit4/laserplayer.png">玩家子彈</a> 並置於專案目錄 <em>assets</em>中，在新場景根節點新增<em>精靈2D(Sprite2D)</em>節點，重新命名為<em>Laserplayer</em>，並設定材質為<em>laserplayer.png</em>，之後對<em>Laserplayer</em>節點新增C#控制程式<em>Laserplayer.cs</em>，在<em>Laserplayer.cs</em>設定子彈速度屬性<em>speed</em>，並在<em>_Process</em>方法改變子彈<em>Y軸</em>位置。
                     <div class="codeblock">
 using Godot;
 using System;
@@ -192,10 +203,25 @@ _timer.Timeout+=()=>{ReEnableAttack();};
 1. 當玩家<em>player</em>發射子彈時撥放子彈發射音樂
                     </div>
                 </div>
-
                 <div class="slide" id="slide-10">
+                    <div class="unittitle">節點-StaticBody2D</div>
+                    <p><em>StaticBody2D</em>節點不能移動，但支援碰撞偵測，一般用於設定邊界或障礙物，要偵測碰撞，需加入<em>CollisionShape2D</em>節點設定碰撞區域(Collision Shape)設定碰撞。</p>
+                    <div class="unittitle">練習</div>
+                    <div class="codeblock">
+1. 假設玩家<em>player</em>只能左右移動，請在遊戲左、右兩邊利用<em>StaticBody2D</em>節點設定邊界
+                    </div>
+                </div>
+                <div class="slide" id="slide-11">
                     <div class="unittitle">CharacterBody2D</div>
-                    <p><em>CharacterBody2D</em>節點透過程式控制，同時適用於不須進階物理性質並包含移動碰撞偵測等功能。<em>CharacterBody2D</em>將包含<em>Sprite2D</em>與<em>CollisionShape2D</em>節點，<em>Sprite2D</em>用於設定腳色材質(Texture)，<em>CollisionShape2D</em>透過碰撞區域(Collision Shape)設定碰撞。</p>
+                    <p><em>CharacterBody2D</em>節點用於程式控制並適用於不須進階物理性質並包含移動碰撞偵測等功能，需加入<em>CollisionShape2D</em>設定碰撞區域，透過<em>MoveAndSlide()</em>與<em>MoveAndCollide()</em>方法移動節點，並透過下列方法偵測碰撞。</p>
+                    <div class="codeblock">
+// MoveAndCollide傳回碰撞節點.
+var collision = MoveAndCollide(Vector2移動距離);
+if (collision != null)
+{
+    GD.Print("I collided with ", ((Node)collision.GetCollider()).Name);
+}
+                    </div>
                     <div class="unittitle">練習</div>
                     <p>請下載<a href="imgs/unit4/player.png">玩家</a>圖片並放入專案目錄後，製作如下練習</p>
                     <div class="codeblock">
@@ -203,10 +229,34 @@ _timer.Timeout+=()=>{ReEnableAttack();};
 2. 請在<em>player</em>節點下加入<em>Sprite2D</em>與<em>CollisionShape2D</em>節點
 3. 請設定<em>Sprite2D</em>材質為玩家圖片
 4. 請設定<em>CollisionShape2D</em>為RectangleShape2D並涵蓋玩家圖片
+5. 請利用<em>MoveAndCollide()</em>讓玩家在左、右邊界自行移動
                     </div>
-                    <p></p>
-                    <p><img src="imgs/unit4/slide3-exer.png"></p>
                 </div>
+                <div class="slide" id="slide-12">
+                    <div class="unittitle">射擊及撞擊偵測</div>
+                    <p>請下載<a href="imgs/unit4/enemy.png">敵人</a>、<a href="imgs/unit4/player.png">玩家</a>、<a href="imgs/unit4/laserenemy.png">敵人子彈</a>、<a href="imgs/unit4/laserplayer.png">玩家子彈</a>，請完成下列動作：</p>
+                    <ul>
+                        <li>
+                            讓一個敵人左右移動，至最大移動距離時向下移動一定距離後，反向移動，當離開視窗後移除
+                        </li>
+                        <li>
+                            同上練習，請動態載入敵人並設定位置
+                        </li>
+                        <li>
+                            請設計敵人子彈場景，設定子彈速度、位置由上而下、離開螢幕時消失，同時須具備碰撞偵測，當碰撞發生時，如果對象為<em>player</em>，請利用<em>GD.Print()</em>方法印出<em>Player is hit.</em>
+                        </li>
+                        <li>
+                            請加入玩家<em>player</em>，使用者可以控制玩家左右移動、並發射子彈
+                        </li>
+                        <li>
+                            玩家子彈設定碰撞偵測，如果碰撞對象為<em>enemy</em>則<em>enemy</em>執行<em>QueueFree()動作</em>
+                        </li>
+                        <li>
+                            遊戲世界保持數個敵人，如果敵人數小於預設敵人數，系統需自動產生敵人
+                        </li>                       
+                    </ul>
+                </div>
+
 
             </div>
             <!--課程單元按鈕-->
