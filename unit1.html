@@ -25,15 +25,7 @@
             </div>
             <div class="unititem">
                 <div><a href="#slide-3" class="itembutton" onclick="nextSlide(3);">3</a></div>
-                <div>建立並執行第一個主控台應用</div>
-            </div>
-            <div class="unititem">
-                <div><a href="#slide-4" class="itembutton" onclick="nextSlide(4);">4</a></div>
-                <div>安裝Godot遊戲引擎</div>
-            </div>
-            <div class="unititem">
-                <div><a href="#slide-5" class="itembutton" onclick="nextSlide(5);">5</a></div>
-                <div>建立並執行第一個Godot專案</div>
+                <div>建立並執行Visual Studio C# MVC專案</div>
             </div>
         </div>
         <div class="main">
@@ -41,52 +33,28 @@
                 <!--單元內容-->                   
                 <div class="slide" id="slide-1">
                     <div class="unittitle">準備工作</div>
-                    <p>安裝軟體包含<em>.Net SDK、Visual Studio、Godot遊戲引擎</em>。</p>
+                    <p>安裝軟體包含<em>.Net SDK及Visual Studio</em>。</p>
                     <div class="unittitle">下載.Net SDK</div>
-                    <p>請連結至.Net官網 <em>(https://dotnet.microsoft.com/en-us/download)</em> 下載.NET 6 SDK x64版本，如果是Apple Mac，請點選 <em>All .Net 6 downloads</em> 後，選擇macOS installer，<em>請注意：Mac CPU為M版本請下載 macOS Arm64版本，Intel CPU請下載 macOS x64版本</em>。下載後請執行安裝。</p>
+                    <p>請連結至.Net官網 <em>(https://dotnet.microsoft.com/en-us/download)</em> 下載最新版.NET SDK x64版本，如果是Apple Mac，請點選 <em>All .Net downloads</em> 後，選擇macOS installer，<em>請注意：Mac CPU為M版本請下載 macOS Arm64版本，Intel CPU請下載 macOS x64版本</em>。下載後請執行安裝。</p>
                 </div>
                 <div class="slide" id="slide-2">
                     <div class="unittitle">下載Visual Studio</div>
-                    <p>請下載Visual Studio 2022或Visual Studio 2022 Community<em>(https://visualstudio.microsoft.com/zh-hant/vs/community/)</em> installer後，請安裝 <em>.Net桌面開發</em> 工作負載(如下圖)。安裝Visual Studio 2022或Visual Studio 2022 Community後請使用微軟帳號進行免費啟用。</p>
-                    <p><img src="imgs/unit1/slide2-1.png"/></p>
+                    <p>請下載Visual Studio 2022或Visual Studio 2022 Community<em>(https://visualstudio.microsoft.com/zh-hant/vs/community/)</em> installer後，請安裝如下圖工作負載(如下圖)。安裝Visual Studio 2022或Visual Studio 2022 Community後請使用微軟帳號進行免費啟用。</p>
+                    <p><img src="imgs/unit1/soft-1.png"/></p>
+                    <p><img src="imgs/unit1/soft-2.png"/></p>
                 </div>
                 <div class="slide" id="slide-3">
-                    <div class="unittitle">建立並執行Visual Studio C#主控台專案</div>
+                    <div class="unittitle">建立並執行Visual Studio C#MVC專案</div>
                     <ul>
                         <li>開啟Visual Studio</li>
                         <li>選擇建立新的專案</li>
-                        <li>專案範本選擇 C# - Windows - 主控台，選擇主控台應用程式後選下一步</li>
-                        <li>設定專案名稱與確認專案位置後選下一步</li>
-                        <li>架構請使用預設.Net 6後選建立</li>
-                        <li>專案中Program.cs為主程式，點選選項按鈕 綠色三角形專案名稱 執行專案</li>
+                        <li>專案範本搜尋 輸入 mvc 後選擇 ASP.NET CORE Web應用程式(Model-View-Controller)，選擇下一步，取消 HTTPS進行設定後，岸建立</li>
+                        <li>點選選項按鈕 綠色三角形專案名稱 執行專案</li>
                     </ul>                            
                 </div>
-                <div class="slide" id="slide-4">
-                    <div class="unittitle">下載Godot遊戲引擎</div>
-                    <p>課程將搭配Godot遊戲引擎並使用C#語言實作物件導向概念，請下載Godot .NET 64bit C# support(x86_64)<em>(https://godotengine.org/download/windows/)</em>後，依照下列步驟設定Godot執行環境。</p>
-                    <ul>
-                        <li>下載Godot .NET 64bit C# support(x86_64)檔案</li>
-                        <li>解壓縮下載檔案後，將解壓縮檔案夾內Godot_XX檔案夾複製至特定磁碟機(如C磁碟機)</li>
-                        <li>進入Godot檔案夾後點選 <em>Godot_xx.exe</em> 即可執行Godot，使用者也可以將該執行檔釘選至工作列</li>
-                    </ul>
-                    <p>課程將使用VSCode編輯Godot C#程式，請下載並安裝<a href="https://code.visualstudio.com/">Visual Studio Code</a>，安裝完畢，請開啟VS Code，點選延伸套件(extensions，如下圖)，在搜尋文字方塊輸入 <em>Chinese</em> 後安裝繁體套件，輸入 <em>C#</em>安裝C# for Visual Studio Code套件，輸入 <em>C# Tool for Godot</em>安裝 Godot C#工具。</p>
-                    <img src="imgs/unit1/slide4-1.png"/>
-                 </div>
+                
     
-                <div class="slide" id="slide-5">
-                    <div class="unittitle">建立並執行Godot專案</div>
-                    <ul>
-                        <li>在磁碟機建立Godot專案檔案夾(例如project1)，檔案夾用於儲存專案相關檔案</li>
-                        <li>開啟Godot檔案夾並執行<em>Godot win64</em>應用程式</li>
-                        <li>點選<em>新增專案</em>，<em>設定專案名稱</em>並將<em>專案路徑設定為專案檔案夾(如project1)位置</em>，點選建立並編輯</li>
-                        <li>點選左上<em> + </em>按鈕並輸入<em> Sprite</em>後，選擇<em>Sprite</em>並點選<em>建立</em></li>
-                        <li>點選左下<em>icon.png</em>並將其拖曳至右邊<em> Sprite </em>屬性面板中的<em> Texture</em>
-                        <p><img src="imgs/unit1/slide5-1.png"/></p>
-                        </li>
-                        <li>將icon.png圖片拖曳至視窗中後，選擇選項清單 場景-儲存場景並點選右上角 白色三角形 按鈕執行專案</li>
-                        <li>請點選加入腳本節點，選擇加入腳本並選擇C#後，點選建立，專案跟目錄會建立 <em>節點名稱.cs</em> 檔案，之後可利用VS Code開啟該檔案使用 C# 設定並控制節點。</li>
-                    </ul>
-                </div>
+                
             </div>
             <!--課程單元按鈕-->
             <div class="backbtn">
